@@ -24,12 +24,12 @@ export default function Home() {
   const audiences = language === 'es'
     ? [
         { icon: '🧑‍💻', label: 'Estudiantes que comienzan a programar' },
-        { icon: '🌍', label: 'Hablantes no nativos de inglés' },
+        { icon: '🌍', label: 'Hablantes de inglés y español' },
         { icon: '👩‍🏫', label: 'Docentes y talleres educativos' },
       ]
     : [
         { icon: '🧑‍💻', label: 'Students starting coding' },
-        { icon: '🌍', label: 'Non-native English speakers' },
+        { icon: '🌍', label: 'English & Spanish speakers' },
         { icon: '👩‍🏫', label: 'Teachers and workshops' },
       ];
 
@@ -83,8 +83,8 @@ export default function Home() {
           </h2>
           <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>
             {language === 'es'
-              ? 'Creado por Bea Mendez Gandica, fundadora de Nuevo Foundation, para expandir el acceso a la educación en programación para estudiantes en todas partes.'
-              : 'Built by Bea Mendez Gandica, founder of Nuevo Foundation, to expand access to coding education for students everywhere.'}
+              ? <>Creado por Beatris Mendez Gandica, fundadora de <a href="https://www.nuevofoundation.org" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)', fontWeight: 700, textDecoration: 'none' }}>Nuevo Foundation</a>, para expandir el acceso a la educación en programación para estudiantes en todas partes.</>
+              : <>Built by Beatris Mendez Gandica, founder of <a href="https://www.nuevofoundation.org" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)', fontWeight: 700, textDecoration: 'none' }}>Nuevo Foundation</a>, to expand access to coding education for students everywhere.</>}
           </p>
           <a
             href="https://github.com/beagandica/ai-education-assistant"

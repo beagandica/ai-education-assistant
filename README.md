@@ -76,7 +76,7 @@ src/
 
 ## Design Philosophy
 
-This project is mission-driven, inspired by [Nuevo Foundation](https://www.nuevofoundation.org/)'s goal of expanding access to computer science education for underserved communities. The interface uses a warm, supportive tone and a color palette drawn from Nuevo Foundation's branding. Every design decision — from bilingual content to zero-cost hosting — prioritizes making learning as accessible as possible.
+This project is mission-driven, built by [Beatris Mendez Gandica](https://www.beagandica.com), founder of [Nuevo Foundation](https://www.nuevofoundation.org/), to expand access to coding education for students everywhere. The interface uses a warm, supportive tone and a color palette drawn from Nuevo Foundation's branding. Every design decision - from bilingual content to zero-cost hosting - prioritizes making learning as accessible as possible.
 
 ## License
 

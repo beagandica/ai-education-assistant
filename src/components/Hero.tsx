@@ -16,8 +16,8 @@ export function Hero() {
       </p>
       <p className="hero__powered">
         {language === 'es'
-          ? '✨ Impulsado por explicaciones inspiradas en IA, diseñadas para simplificar conceptos complejos'
-          : '✨ Powered by AI-inspired explanations designed to simplify complex concepts'}
+          ? 'Impulsado por explicaciones inspiradas en IA, diseñadas para simplificar conceptos complejos'
+          : 'Powered by AI-inspired explanations designed to simplify complex concepts'}
       </p>
       <div className="hero__actions">
         <Link to="/ask" className="btn btn--secondary">
