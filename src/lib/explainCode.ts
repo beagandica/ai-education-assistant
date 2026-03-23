@@ -192,7 +192,7 @@ const LINE_PATTERNS: LinePattern[] = [
   // try/catch
   {
     pattern: /^\s*try\s*[:{]\s*$/,
-    explain: () => `Begins a try block — the code inside will be tested for errors.`,
+    explain: () => `Begins a try block - the code inside will be tested for errors.`,
   },
   {
     pattern: /^\s*(?:}\s*)?catch\s*\((\w+)\)\s*\{?\s*$/,

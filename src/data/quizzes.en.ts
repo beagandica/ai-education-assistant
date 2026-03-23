@@ -17,7 +17,7 @@ export const quizzesEn: Quiz[] = [
     options: ['let', 'var', 'const', 'static'],
     correctIndex: 2,
     explanation:
-      'const declares a constant — a variable whose value cannot be reassigned after initialization. let and var allow reassignment.',
+      'const declares a constant - a variable whose value cannot be reassigned after initialization. let and var allow reassignment.',
   },
   {
     id: 'var-3',
@@ -32,7 +32,7 @@ export const quizzesEn: Quiz[] = [
     id: 'var-4',
     topic: 'variables',
     question: 'What happens when you run this code?\n\nconst score = 100;\nscore = 200;\nconsole.log(score);',
-    options: ['100', '200', 'undefined', 'Error — you cannot reassign a const'],
+    options: ['100', '200', 'undefined', 'Error - you cannot reassign a const'],
     correctIndex: 3,
     explanation:
       'Variables declared with const cannot be reassigned. Trying to change score from 100 to 200 throws a TypeError. Use let if you need to reassign.',
@@ -44,7 +44,7 @@ export const quizzesEn: Quiz[] = [
     options: ['2', '3', '4', 'Infinite'],
     correctIndex: 1,
     explanation:
-      'The loop starts at i = 0 and runs while i < 3. So i takes the values 0, 1, 2 — that\'s 3 iterations.',
+      'The loop starts at i = 0 and runs while i < 3. So i takes the values 0, 1, 2 - that\'s 3 iterations.',
   },
   {
     id: 'loop-2',

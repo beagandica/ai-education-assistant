@@ -5,7 +5,7 @@ export const learningPathsEs: LearningPath[] = [
     id: 'python-basics',
     title: 'Aprende los Fundamentos de Python',
     description:
-      'Comienza tu camino en la programación con Python — uno de los lenguajes más amigables para principiantes y más versátiles. Esta ruta te lleva desde cero hasta escribir programas reales en Python.',
+      'Comienza tu camino en la programación con Python - uno de los lenguajes más amigables para principiantes y más versátiles. Esta ruta te lleva desde cero hasta escribir programas reales en Python.',
     steps: [
       'Instala Python y configura tu primer proyecto',
       'Aprende variables, tipos de datos y entrada/salida básica',
@@ -22,7 +22,7 @@ export const learningPathsEs: LearningPath[] = [
     id: 'javascript-basics',
     title: 'Aprende los Fundamentos de JavaScript',
     description:
-      'Sumérgete en JavaScript — el lenguaje que impulsa la web interactiva. Esta ruta cubre los conceptos fundamentales que necesitas para empezar a construir páginas web dinámicas y aplicaciones.',
+      'Sumérgete en JavaScript - el lenguaje que impulsa la web interactiva. Esta ruta cubre los conceptos fundamentales que necesitas para empezar a construir páginas web dinámicas y aplicaciones.',
     steps: [
       'Configura tu entorno y escribe tu primer script',
       'Entiende variables, tipos de datos y operadores',
@@ -39,7 +39,7 @@ export const learningPathsEs: LearningPath[] = [
     id: 'web-dev-basics',
     title: 'Aprende los Fundamentos del Desarrollo Web',
     description:
-      '¡Construye tu primer sitio web desde cero! Esta ruta te enseña las tres tecnologías fundamentales de la web — HTML para la estructura, CSS para el estilo y JavaScript para la interactividad.',
+      '¡Construye tu primer sitio web desde cero! Esta ruta te enseña las tres tecnologías fundamentales de la web - HTML para la estructura, CSS para el estilo y JavaScript para la interactividad.',
     steps: [
       'Entiende cómo funciona la web: navegadores, servidores y URLs',
       'Construye la estructura de páginas con HTML: encabezados, párrafos, listas y enlaces',

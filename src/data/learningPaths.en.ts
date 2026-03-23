@@ -5,7 +5,7 @@ export const learningPathsEn: LearningPath[] = [
     id: 'python-basics',
     title: 'Learn Python Basics',
     description:
-      'Start your coding journey with Python — one of the most beginner-friendly and versatile programming languages. This path takes you from zero to writing real Python programs.',
+      'Start your coding journey with Python - one of the most beginner-friendly and versatile programming languages. This path takes you from zero to writing real Python programs.',
     steps: [
       'Install Python and set up your first project',
       'Learn variables, data types, and basic input/output',
@@ -22,7 +22,7 @@ export const learningPathsEn: LearningPath[] = [
     id: 'javascript-basics',
     title: 'Learn JavaScript Basics',
     description:
-      'Dive into JavaScript — the language that powers the interactive web. This path covers the core concepts you need to start building dynamic web pages and applications.',
+      'Dive into JavaScript - the language that powers the interactive web. This path covers the core concepts you need to start building dynamic web pages and applications.',
     steps: [
       'Set up your environment and write your first script',
       'Understand variables, data types, and operators',
@@ -39,7 +39,7 @@ export const learningPathsEn: LearningPath[] = [
     id: 'web-dev-basics',
     title: 'Learn Web Development Basics',
     description:
-      'Build your first website from scratch! This path teaches you the three core technologies of the web — HTML for structure, CSS for style, and JavaScript for interactivity.',
+      'Build your first website from scratch! This path teaches you the three core technologies of the web - HTML for structure, CSS for style, and JavaScript for interactivity.',
     steps: [
       'Understand how the web works: browsers, servers, and URLs',
       'Build page structure with HTML: headings, paragraphs, lists, and links',

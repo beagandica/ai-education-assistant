@@ -17,7 +17,7 @@ export const quizzesEs: Quiz[] = [
     options: ['let', 'var', 'const', 'static'],
     correctIndex: 2,
     explanation:
-      'const declara una constante — una variable cuyo valor no se puede reasignar después de la inicialización. let y var permiten la reasignación.',
+      'const declara una constante - una variable cuyo valor no se puede reasignar después de la inicialización. let y var permiten la reasignación.',
   },
   {
     id: 'var-3',
@@ -32,7 +32,7 @@ export const quizzesEs: Quiz[] = [
     id: 'var-4',
     topic: 'variables',
     question: '¿Qué pasa al ejecutar este código?\n\nconst score = 100;\nscore = 200;\nconsole.log(score);',
-    options: ['100', '200', 'undefined', 'Error — no puedes reasignar un const'],
+    options: ['100', '200', 'undefined', 'Error - no puedes reasignar un const'],
     correctIndex: 3,
     explanation:
       'Las variables declaradas con const no pueden ser reasignadas. Intentar cambiar score de 100 a 200 lanza un TypeError. Usa let si necesitas reasignar.',
@@ -44,7 +44,7 @@ export const quizzesEs: Quiz[] = [
     options: ['2', '3', '4', 'Infinito'],
     correctIndex: 1,
     explanation:
-      'El bucle empieza en i = 0 y se ejecuta mientras i < 3. Así que i toma los valores 0, 1, 2 — son 3 iteraciones.',
+      'El bucle empieza en i = 0 y se ejecuta mientras i < 3. Así que i toma los valores 0, 1, 2 - son 3 iteraciones.',
   },
   {
     id: 'loop-2',

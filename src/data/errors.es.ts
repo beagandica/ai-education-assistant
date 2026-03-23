@@ -14,7 +14,7 @@ export const errorsEs: ErrorResponse[] = [
       'Olvidaste importar un módulo o librería',
     ],
     stepsToFix: [
-      'Revisa la escritura exacta — los nombres de variables distinguen mayúsculas y minúsculas',
+      'Revisa la escritura exacta - los nombres de variables distinguen mayúsculas y minúsculas',
       'Asegúrate de que la variable esté declarada antes de la línea que la usa',
       'Verifica que la variable esté en el alcance correcto (no atrapada dentro de una función o bloque)',
       'Si es de una librería, asegúrate de importarla al inicio del archivo',
@@ -22,7 +22,7 @@ export const errorsEs: ErrorResponse[] = [
     exampleFix: `// ❌ Error
 console.log(mesage); // ReferenceError: mesage is not defined
 
-// ✅ Corregido — escritura correcta y declaración
+// ✅ Corregido - escritura correcta y declaración
 let message = "Hello!";
 console.log(message); // "Hello!"`,
   },
@@ -49,15 +49,15 @@ console.log(message); // "Hello!"`,
 let count = 5;
 count(); // TypeError: count is not a function
 
-// ✅ Corregido — no llames un número como función
+// ✅ Corregido - no llames un número como función
 let count = 5;
 console.log(count); // 5
 
-// ❌ Error — método incorrecto en string
+// ❌ Error - método incorrecto en string
 let name = "Alice";
 name.push(" Smith"); // TypeError: name.push is not a function
 
-// ✅ Corregido — usa concatenación de strings
+// ✅ Corregido - usa concatenación de strings
 let name = "Alice";
 name = name + " Smith";`,
   },
@@ -84,7 +84,7 @@ name = name + " Smith";`,
 let user = undefined;
 console.log(user.name); // TypeError: Cannot read properties of undefined
 
-// ✅ Corregido — verificar antes de acceder
+// ✅ Corregido - verificar antes de acceder
 let user = undefined;
 if (user) {
   console.log(user.name);
@@ -92,7 +92,7 @@ if (user) {
   console.log("No user found");
 }
 
-// ✅ Aún mejor — usar encadenamiento opcional
+// ✅ Aún mejor - usar encadenamiento opcional
 console.log(user?.name ?? "No user found");`,
   },
   {
@@ -100,7 +100,7 @@ console.log(user?.name ?? "No user found");`,
     pattern: '(SyntaxError: Unexpected token|Unexpected token)',
     title: 'SyntaxError: Token inesperado',
     whatItMeans:
-      'JavaScript encontró un carácter o símbolo donde no lo esperaba. La estructura de tu código tiene un error de sintaxis — como un corchete faltante, una coma de más o una palabra clave mal ubicada.',
+      'JavaScript encontró un carácter o símbolo donde no lo esperaba. La estructura de tu código tiene un error de sintaxis - como un corchete faltante, una coma de más o una palabra clave mal ubicada.',
     commonCauses: [
       'Faltan o sobran llaves `{}`, paréntesis `()` o corchetes `[]`',
       'Comas de más o faltantes en arreglos/objetos',
@@ -109,22 +109,22 @@ console.log(user?.name ?? "No user found");`,
       'Olvidar cerrar las comillas en un string',
     ],
     stepsToFix: [
-      'Mira el número de línea en el error — el problema suele estar en esa línea o la anterior',
+      'Mira el número de línea en el error - el problema suele estar en esa línea o la anterior',
       'Verifica que los pares coincidan: cada `{` necesita un `}`, cada `(` necesita un `)`',
       'Usa la función de coincidencia de corchetes de tu editor para encontrar desajustes',
       'Busca comas al final en objetos/arreglos y comas faltantes entre elementos',
     ],
-    exampleFix: `// ❌ Error — falta llave de cierre
+    exampleFix: `// ❌ Error - falta llave de cierre
 function greet(name) {
   console.log("Hello " + name);
 // SyntaxError: Unexpected end of input
 
-// ✅ Corregido — se agregó llave de cierre
+// ✅ Corregido - se agregó llave de cierre
 function greet(name) {
   console.log("Hello " + name);
 }
 
-// ❌ Error — coma extra
+// ❌ Error - coma extra
 let colors = ["red", "blue",, "green"];
 
 // ✅ Corregido
@@ -135,26 +135,26 @@ let colors = ["red", "blue", "green"];`,
     pattern: '(SyntaxError: Unexpected end of input)',
     title: 'SyntaxError: Fin de entrada inesperado',
     whatItMeans:
-      'JavaScript llegó al final de tu código pero todavía esperaba más — generalmente un corchete, llave o paréntesis de cierre. Algo se abrió pero nunca se cerró.',
+      'JavaScript llegó al final de tu código pero todavía esperaba más - generalmente un corchete, llave o paréntesis de cierre. Algo se abrió pero nunca se cerró.',
     commonCauses: [
       'Falta la llave de cierre `}` de una función, if o bucle',
       'Falta el paréntesis de cierre `)` en una llamada a función o condición',
       'String sin cerrar (falta la comilla de cierre)',
-      'Código incompleto — puede que hayas borrado una línea accidentalmente',
+      'Código incompleto - puede que hayas borrado una línea accidentalmente',
     ],
     stepsToFix: [
-      'Cuenta tus llaves de apertura y cierre — deben coincidir',
+      'Cuenta tus llaves de apertura y cierre - deben coincidir',
       'Empieza desde el final del archivo y trabaja hacia atrás para encontrar lo que falta',
       'Usa la función de plegado de código de tu editor para ver qué bloques están sin cerrar',
-      'Usa un formateador automático (como Prettier) — a menudo señala dónde está el desajuste',
+      'Usa un formateador automático (como Prettier) - a menudo señala dónde está el desajuste',
     ],
-    exampleFix: `// ❌ Error — faltan llaves de cierre
+    exampleFix: `// ❌ Error - faltan llaves de cierre
 function calculateTotal(items) {
   let total = 0;
   for (let item of items) {
     total += item.price;
 
-// ✅ Corregido — cerrar el bucle for y la función
+// ✅ Corregido - cerrar el bucle for y la función
 function calculateTotal(items) {
   let total = 0;
   for (let item of items) {
@@ -181,20 +181,20 @@ function calculateTotal(items) {
       'Usa la función "convertir indentación a espacios" de tu editor',
       'Verifica que todas las líneas del mismo bloque tengan exactamente la misma indentación',
     ],
-    exampleFix: `# ❌ Error — falta indentación
+    exampleFix: `# ❌ Error - falta indentación
 def greet(name):
 print("Hello " + name)  # IndentationError!
 
-# ✅ Corregido — indentado con 4 espacios
+# ✅ Corregido - indentado con 4 espacios
 def greet(name):
     print("Hello " + name)
 
-# ❌ Error — indentación inconsistente
+# ❌ Error - indentación inconsistente
 if True:
     print("yes")
   print("also yes")  # IndentationError!
 
-# ✅ Corregido — indentación consistente de 4 espacios
+# ✅ Corregido - indentación consistente de 4 espacios
 if True:
     print("yes")
     print("also yes")`,
@@ -204,12 +204,12 @@ if True:
     pattern: "(TypeError:.*'NoneType'|NoneType)",
     title: "TypeError: 'NoneType' (Python)",
     whatItMeans:
-      'Intentaste hacer algo con `None` que solo funciona con valores reales. `None` en Python significa "nada" o "sin valor" — es lo que las funciones devuelven por defecto si no tienen una instrucción `return`.',
+      'Intentaste hacer algo con `None` que solo funciona con valores reales. `None` en Python significa "nada" o "sin valor" - es lo que las funciones devuelven por defecto si no tienen una instrucción `return`.',
     commonCauses: [
       'Una función no tiene instrucción `return`, por lo que devuelve `None`',
       'Llamar un método de lista como `.sort()` o `.append()` y asignar el resultado (estos devuelven `None`)',
       'Una variable debía recibir datos pero la operación falló silenciosamente',
-      'Usar el resultado de `print()` — siempre devuelve `None`',
+      'Usar el resultado de `print()` - siempre devuelve `None`',
     ],
     stepsToFix: [
       'Verifica si la función tiene una instrucción `return` que realmente devuelve un valor',
@@ -217,17 +217,17 @@ if True:
       'Agrega una verificación: `if result is not None:` antes de usar el valor',
       'Usa `print()` para mostrar y una variable separada para almacenar',
     ],
-    exampleFix: `# ❌ Error — .sort() devuelve None
+    exampleFix: `# ❌ Error - .sort() devuelve None
 numbers = [3, 1, 2]
 sorted_numbers = numbers.sort()
 print(sorted_numbers[0])  # TypeError: 'NoneType' object is not subscriptable
 
-# ✅ Corregido — ordenar en su lugar, luego usar la lista
+# ✅ Corregido - ordenar en su lugar, luego usar la lista
 numbers = [3, 1, 2]
 numbers.sort()
 print(numbers[0])  # 1
 
-# ✅ Alternativa — usar sorted() que devuelve una nueva lista
+# ✅ Alternativa - usar sorted() que devuelve una nueva lista
 numbers = [3, 1, 2]
 sorted_numbers = sorted(numbers)
 print(sorted_numbers[0])  # 1`,
@@ -245,23 +245,23 @@ print(sorted_numbers[0])  # 1`,
       'La variable fue definida dentro de una función y estás intentando usarla fuera',
     ],
     stepsToFix: [
-      'Revisa bien la escritura — Python distingue entre mayúsculas y minúsculas (`name` ≠ `Name`)',
+      'Revisa bien la escritura - Python distingue entre mayúsculas y minúsculas (`name` ≠ `Name`)',
       'Asegúrate de que la variable esté asignada antes de la línea que la usa',
       'Si es de un módulo, agrega la instrucción `import` al inicio de tu archivo',
       'Verifica que la variable no esté atrapada en un alcance diferente (dentro de una función)',
     ],
-    exampleFix: `# ❌ Error — error de escritura
+    exampleFix: `# ❌ Error - error de escritura
 user_name = "Alice"
 print(user_Name)  # NameError: name 'user_Name' is not defined
 
-# ✅ Corregido — capitalización correcta
+# ✅ Corregido - capitalización correcta
 user_name = "Alice"
 print(user_name)  # "Alice"
 
-# ❌ Error — olvidó importar
+# ❌ Error - olvidó importar
 result = math.sqrt(16)  # NameError: name 'math' is not defined
 
-# ✅ Corregido — agregar import
+# ✅ Corregido - agregar import
 import math
 result = math.sqrt(16)  # 4.0`,
   },
@@ -273,7 +273,7 @@ result = math.sqrt(16)  # 4.0`,
       'Intentaste acceder a un elemento de una lista en una posición que no existe. Por ejemplo, si tu lista tiene 3 elementos (índices 0, 1, 2) e intentas acceder al índice 3 o mayor.',
     commonCauses: [
       'Olvidar que los índices de listas empiezan en 0, no en 1',
-      'Usar `len(lista)` como índice — el último índice válido es `len(lista) - 1`',
+      'Usar `len(lista)` como índice - el último índice válido es `len(lista) - 1`',
       'Hacer un bucle con un rango que va un paso de más',
       'La lista está vacía pero intentas acceder al primer elemento',
       'Usar un índice fijo para una lista cuya longitud puede cambiar',
@@ -285,16 +285,16 @@ result = math.sqrt(16)  # 4.0`,
       'Usa `mi_lista[-1]` para obtener el último elemento sin importar la longitud',
       'Usa `for item in mi_lista:` en lugar de rastreo manual de índices cuando sea posible',
     ],
-    exampleFix: `# ❌ Error — índice fuera de rango
+    exampleFix: `# ❌ Error - índice fuera de rango
 colors = ["red", "green", "blue"]
 print(colors[3])  # IndexError! Los índices válidos son 0, 1, 2
 
-# ✅ Corregido — usar un índice válido
+# ✅ Corregido - usar un índice válido
 colors = ["red", "green", "blue"]
 print(colors[2])  # "blue" (último elemento)
 print(colors[-1]) # "blue" (último elemento, la forma Pythónica)
 
-# ✅ Corregido — verificar antes de acceder
+# ✅ Corregido - verificar antes de acceder
 colors = []
 if len(colors) > 0:
     print(colors[0])
