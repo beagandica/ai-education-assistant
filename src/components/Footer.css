@@ -1,0 +1,32 @@
+.footer {
+  background-color: var(--color-dark);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer__text {
+  font-size: 0.925rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.6;
+}
+
+.footer__heart {
+  color: var(--color-error);
+}
+
+.footer__credits {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+.footer__credits a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.footer__credits a:hover {
+  text-decoration: underline;
+}

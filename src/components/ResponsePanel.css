@@ -1,0 +1,51 @@
+.response-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.response-panel__section {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 4px var(--color-card-shadow);
+}
+
+.response-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.response-panel__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.response-panel__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.response-panel__content {
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.response-panel__content p {
+  margin-bottom: 0.5rem;
+}
+
+.response-panel__content p:last-child {
+  margin-bottom: 0;
+}
+
+.response-panel__content pre {
+  margin-top: 0.5rem;
+}

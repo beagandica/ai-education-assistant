@@ -1,0 +1,85 @@
+.learning-path-card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: 0 2px 8px var(--color-card-shadow);
+  transition: var(--transition);
+}
+
+.learning-path-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.learning-path-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.learning-path-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.learning-path-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.learning-path-card__description {
+  color: var(--color-text-light);
+  font-size: 0.925rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.learning-path-card__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.learning-path-card__steps::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.learning-path-card__step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.learning-path-card__step-number {
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.learning-path-card__step-text {
+  line-height: 1.4;
+}
