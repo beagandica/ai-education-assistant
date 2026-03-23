@@ -310,4 +310,69 @@ function getUserSafe(id) {
     tryThisNext:
       'Rompe intencionalmente algo de tu código existente de diferentes maneras y practica leyendo los mensajes de error. Intenta acceder a una variable que no existe, llamar a una función inexistente y pasar un tipo incorrecto. Usa `console.log()` o `print()` para rastrear lo que tu código realmente está haciendo paso a paso.',
   },
+  {
+    id: 'data-structures',
+    topic: 'Estructuras de Datos',
+    simpleExplanation:
+      'Las estructuras de datos son formas de organizar y almacenar datos para que puedas acceder a ellos y modificarlos eficientemente. Piensa en ellas como diferentes tipos de contenedores: un arreglo es como una lista numerada, una pila (stack) es como un montón de platos (último en entrar, primero en salir), una cola (queue) es como una fila en una tienda (primero en entrar, primero en salir), y un conjunto (set) es como una bolsa de elementos únicos sin duplicados. Elegir la estructura de datos correcta hace tu código más rápido y fácil de entender.',
+    whyItMatters:
+      'Todo programa real necesita almacenar y gestionar colecciones de datos. Usar la estructura de datos correcta puede ser la diferencia entre código que se ejecuta al instante y código que tarda una eternidad. Entender las estructuras de datos te ayuda a pensar como programador y resolver problemas de manera más efectiva — es uno de los temas más importantes en la ciencia de la computación.',
+    example: `// JavaScript — Estructuras de datos comunes
+
+// Array — lista ordenada, acceso por índice
+let fruits = ["apple", "banana", "cherry"];
+console.log(fruits[1]); // "banana"
+
+// Stack — Último en Entrar, Primero en Salir (LIFO)
+let stack = [];
+stack.push("A");    // agregar arriba
+stack.push("B");
+stack.push("C");
+console.log(stack.pop()); // "C" — el último agregado sale primero
+
+// Queue — Primero en Entrar, Primero en Salir (FIFO)
+let queue = [];
+queue.push("first");    // agregar al final
+queue.push("second");
+console.log(queue.shift()); // "first" — el primero agregado sale primero
+
+// Set — solo valores únicos, sin duplicados
+let uniqueColors = new Set(["red", "blue", "red", "green"]);
+console.log(uniqueColors); // Set { "red", "blue", "green" }
+
+// Map — pares clave-valor (como un objeto pero más flexible)
+let scores = new Map();
+scores.set("Alice", 95);
+scores.set("Bob", 87);
+console.log(scores.get("Alice")); // 95
+
+# Python — Estructuras de datos comunes
+
+# Lista — ordenada, mutable
+fruits = ["apple", "banana", "cherry"]
+
+# Pila usando una lista
+stack = []
+stack.append("A")
+stack.append("B")
+stack.append("C")
+print(stack.pop())  # "C"
+
+# Cola usando collections.deque
+from collections import deque
+queue = deque(["first", "second"])
+print(queue.popleft())  # "first"
+
+# Set — valores únicos
+unique_colors = {"red", "blue", "red", "green"}
+print(unique_colors)  # {"red", "blue", "green"}
+
+# Diccionario — pares clave-valor
+scores = {"Alice": 95, "Bob": 87}
+print(scores["Alice"])  # 95`,
+    commonMistake:
+      '¡Usar un arreglo para todo! Los arreglos son geniales para listas ordenadas, pero si necesitas verificar si algo existe, un Set es mucho más rápido. Si necesitas buscar valores por una clave, usa un Map o diccionario en lugar de buscar en un arreglo. Además, los principiantes a menudo confunden pilas y colas — recuerda: pila = último en entrar, primero en salir (como deshacer), cola = primero en entrar, primero en salir (como una fila de espera).',
+    tryThisNext:
+      'Intenta implementar una lista de tareas simple usando diferentes estructuras de datos. Usa un arreglo para almacenar tareas en orden, un Set para rastrear etiquetas únicas, y un Map/diccionario para almacenar prioridades de tareas. ¡Luego intenta implementar una función básica de deshacer usando una pila — agrega acciones a la pila y sácalas para deshacer!',
+  },
 ];

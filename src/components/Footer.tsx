@@ -8,11 +8,11 @@ export function Footer() {
     <footer className="footer">
       <p className="footer__text">
         {language === 'es'
-          ? <>Hecho con <span className="footer__heart">❤️</span> para estudiantes de todo el mundo</>
-          : <>Built with <span className="footer__heart">❤️</span> for learners everywhere</>}
+          ? <>Creado por <a href="https://www.beagandica.com" target="_blank" rel="noopener noreferrer">Bea Mendez Gandica</a> con <span className="footer__heart">❤️</span> para estudiantes de todo el mundo</>
+          : <>Built by <a href="https://www.beagandica.com" target="_blank" rel="noopener noreferrer">Bea Mendez Gandica</a> with <span className="footer__heart">❤️</span> for learners everywhere</>}
       </p>
       <p className="footer__credits">
-        AI Education Assistant &copy; {new Date().getFullYear()}
+        AI Education Assistant &copy; 2026
       </p>
     </footer>
   );

@@ -310,4 +310,69 @@ function getUserSafe(id) {
     tryThisNext:
       'Intentionally break some of your existing code in different ways and practice reading the error messages. Try accessing a missing variable, calling a non-existent function, and passing the wrong type. Use `console.log()` or `print()` to trace what your code is actually doing step by step.',
   },
+  {
+    id: 'data-structures',
+    topic: 'Data Structures',
+    simpleExplanation:
+      'Data structures are ways of organizing and storing data so you can access and modify it efficiently. Think of them like different types of containers: an array is like a numbered list, a stack is like a pile of plates (last in, first out), a queue is like a line at a store (first in, first out), and a set is like a bag of unique items with no duplicates. Choosing the right data structure makes your code faster and easier to understand.',
+    whyItMatters:
+      'Every real program needs to store and manage collections of data. Using the right data structure can be the difference between code that runs instantly and code that takes forever. Understanding data structures helps you think like a programmer and solve problems more effectively — it\'s one of the most important topics in computer science.',
+    example: `// JavaScript — Common Data Structures
+
+// Array — ordered list, access by index
+let fruits = ["apple", "banana", "cherry"];
+console.log(fruits[1]); // "banana"
+
+// Stack — Last In, First Out (LIFO)
+let stack = [];
+stack.push("A");    // add to top
+stack.push("B");
+stack.push("C");
+console.log(stack.pop()); // "C" — last one added comes out first
+
+// Queue — First In, First Out (FIFO)
+let queue = [];
+queue.push("first");    // add to back
+queue.push("second");
+console.log(queue.shift()); // "first" — first one added comes out first
+
+// Set — unique values only, no duplicates
+let uniqueColors = new Set(["red", "blue", "red", "green"]);
+console.log(uniqueColors); // Set { "red", "blue", "green" }
+
+// Map — key-value pairs (like an object but more flexible)
+let scores = new Map();
+scores.set("Alice", 95);
+scores.set("Bob", 87);
+console.log(scores.get("Alice")); // 95
+
+# Python — Common Data Structures
+
+# List — ordered, mutable
+fruits = ["apple", "banana", "cherry"]
+
+# Stack using a list
+stack = []
+stack.append("A")
+stack.append("B")
+stack.append("C")
+print(stack.pop())  # "C"
+
+# Queue using collections.deque
+from collections import deque
+queue = deque(["first", "second"])
+print(queue.popleft())  # "first"
+
+# Set — unique values
+unique_colors = {"red", "blue", "red", "green"}
+print(unique_colors)  # {"red", "blue", "green"}
+
+# Dictionary — key-value pairs
+scores = {"Alice": 95, "Bob": 87}
+print(scores["Alice"])  # 95`,
+    commonMistake:
+      'Using an array for everything! Arrays are great for ordered lists, but if you need to check whether something exists, a Set is much faster. If you need to look up values by a key, use a Map or dictionary instead of searching through an array. Also, beginners often confuse stacks and queues — remember: stack = last in first out (like undo), queue = first in first out (like a waiting line).',
+    tryThisNext:
+      'Try implementing a simple to-do list using different data structures. Use an array to store tasks in order, a Set to track unique tags, and a Map/dictionary to store task priorities. Then try implementing a basic undo feature using a stack — push actions onto the stack and pop them to undo!',
+  },
 ];
