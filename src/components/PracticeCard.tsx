@@ -15,11 +15,23 @@ export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
 
   const handleSelect = (index: number) => {
     if (selectedIndex !== null) return;
+
+    // Capture card position before the explanation expands
+    const rect = cardRef.current?.getBoundingClientRect();
+    const topBefore = rect?.top ?? 0;
+
     setSelectedIndex(index);
     onAnswer(index === quiz.correctIndex);
-    // Keep the card in view after the explanation expands
+
+    // After React re-renders, compensate for the height change
     requestAnimationFrame(() => {
-      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const rectAfter = cardRef.current?.getBoundingClientRect();
+      if (rectAfter) {
+        const drift = rectAfter.top - topBefore;
+        if (Math.abs(drift) > 1) {
+          window.scrollBy({ top: drift, behavior: 'instant' });
+        }
+      }
     });
   };
 
