@@ -375,4 +375,213 @@ print(scores["Alice"])  # 95`,
     tryThisNext:
       'Intenta implementar una lista de tareas simple usando diferentes estructuras de datos. Usa un arreglo para almacenar tareas en orden, un Set para rastrear etiquetas únicas, y un Map/diccionario para almacenar prioridades de tareas. ¡Luego intenta implementar una función básica de deshacer usando una pila - agrega acciones a la pila y sácalas para deshacer!',
   },
+  {
+    id: 'for-loop',
+    topic: 'Bucle For',
+    simpleExplanation:
+      'Un bucle for repite un bloque de código un número determinado de veces. Tú le dices dónde empezar, cuándo parar y cómo contar. Es como un entrenador diciendo "haz 10 lagartijas" - el bucle lleva la cuenta de en cuál vas y se detiene cuando llegas a 10. Los bucles for son perfectos cuando sabes de antemano cuántas veces necesitas repetir algo.',
+    whyItMatters:
+      'Los bucles for son el tipo de bucle más común en programación. Los usarás para recorrer listas, procesar datos, dibujar cosas en pantalla y repetir cálculos. Una vez que entiendes el patrón del bucle for, puedes automatizar cualquier tarea repetitiva en segundos en lugar de escribir el mismo código una y otra vez.',
+    example: `// JavaScript - contar del 1 al 5
+for (let i = 1; i <= 5; i++) {
+  console.log("Paso " + i);
+}
+// Salida: Paso 1, Paso 2, Paso 3, Paso 4, Paso 5
+
+// JavaScript - recorrer un arreglo
+let colores = ["rojo", "verde", "azul"];
+for (let i = 0; i < colores.length; i++) {
+  console.log(colores[i]);
+}
+
+// JavaScript - for...of (forma más simple de recorrer arreglos)
+for (let color of colores) {
+  console.log(color);
+}
+
+# Python - contar del 1 al 5
+for i in range(1, 6):
+    print("Paso", i)
+
+# Python - recorrer una lista
+colores = ["rojo", "verde", "azul"]
+for color in colores:
+    print(color)
+
+# Python - usar range con paso
+for i in range(0, 10, 2):
+    print(i)  # 0, 2, 4, 6, 8`,
+    commonMistake:
+      'Los errores de "uno más" o "uno menos" son el error más común con bucles for. En JavaScript, `for (let i = 0; i <= 5; i++)` se ejecuta 6 veces (0 a 5), no 5. En Python, `range(1, 5)` te da 1, 2, 3, 4 - se detiene antes del 5. Siempre verifica tus valores de inicio y fin. Otro error es modificar el arreglo que estás recorriendo mientras estás dentro del bucle, lo que puede causar elementos saltados o bucles infinitos.',
+    tryThisNext:
+      'Escribe un bucle for que imprima solo los números impares del 1 al 20. Luego intenta un bucle for anidado - un bucle dentro de otro - para imprimir una tabla de multiplicar. Cuando te sientas cómodo, prueba usar `for...of` en JavaScript o `enumerate()` en Python cuando necesites tanto el índice como el valor.',
+  },
+  {
+    id: 'while-loop',
+    topic: 'Bucle While',
+    simpleExplanation:
+      'Un bucle while sigue repitiendo un bloque de código mientras una condición sea verdadera. A diferencia del bucle for donde sabes la cantidad de antemano, un bucle while es como decir "sigue revolviendo hasta que la salsa espese" - no sabes exactamente cuántas vueltas tomará, pero sabes cuándo parar. El bucle verifica su condición antes de cada repetición.',
+    whyItMatters:
+      'Los bucles while son esenciales cuando no sabes de antemano cuántas veces necesitas repetir. Piensa en leer entrada del usuario hasta que escriba "salir", esperar a que termine una descarga, o jugar un juego hasta que el jugador pierda. Cada vez que el número de repeticiones depende de algo que cambia durante el bucle, un bucle while es la opción correcta.',
+    example: `// JavaScript - bucle while básico
+let cuenta = 1;
+while (cuenta <= 5) {
+  console.log("Cuenta: " + cuenta);
+  cuenta++;
+}
+
+// JavaScript - simulación de entrada de usuario
+let contrasena = "";
+let intentos = 0;
+while (contrasena !== "secreto" && intentos < 3) {
+  contrasena = prompt("Ingresa la contraseña:");
+  intentos++;
+}
+
+# Python - bucle while básico
+cuenta = 1
+while cuenta <= 5:
+    print("Cuenta:", cuenta)
+    cuenta += 1
+
+# Python - bucle de entrada
+contrasena = ""
+intentos = 0
+while contrasena != "secreto" and intentos < 3:
+    contrasena = input("Ingresa la contraseña: ")
+    intentos += 1
+
+if contrasena == "secreto":
+    print("Acceso concedido!")
+else:
+    print("Demasiados intentos.")`,
+    commonMistake:
+      'El mayor peligro con los bucles while es olvidar actualizar la variable de condición, creando un bucle infinito. Si escribes `while (cuenta <= 5)` pero nunca aumentas `cuenta`, el bucle se ejecuta para siempre. Siempre asegúrate de que algo dentro del bucle cambie la condición para que eventualmente sea falsa. Otro error común es verificar la condición incorrecta - usar `>` cuando quieres decir `<`, o usar `&&` cuando necesitas `||`.',
+    tryThisNext:
+      'Escribe un juego de adivinanza: elige un número aleatorio entre 1 y 100, luego usa un bucle while para que el usuario adivine hasta acertar, dando pistas de "muy alto" o "muy bajo". Luego intenta agregar un número máximo de intentos. Este es un ejercicio clásico de bucle while porque genuinamente no sabes cuántos intentos tomará.',
+  },
+  {
+    id: 'infinite-loop',
+    topic: 'Bucle Infinito',
+    simpleExplanation:
+      'Un bucle infinito es un bucle que nunca deja de ejecutarse porque su condición de salida nunca se cumple. Es como caminar en una caminadora - sin importar cuántos pasos des, nunca llegas. A veces los bucles infinitos son errores (olvidaste actualizar un contador), pero a veces son intencionales, como un bucle de juego o un servidor que escucha solicitudes para siempre.',
+    whyItMatters:
+      'Los bucles infinitos son uno de los errores más comunes que los principiantes encuentran, y pueden congelar tu programa o incluso tu computadora. Entender por qué ocurren te ayuda a evitarlos. Al mismo tiempo, los bucles infinitos controlados (con condiciones de salida apropiadas) son un patrón legítimo usado en juegos, servidores y programas interactivos. Conocer la diferencia entre accidental e intencional es clave.',
+    example: `// JavaScript - bucle infinito ACCIDENTAL (NO ejecutes esto)
+// let i = 0;
+// while (i < 10) {
+//   console.log(i);
+//   // Olvidamos i++ entonces i siempre es 0
+// }
+
+// JavaScript - Versión corregida
+let i = 0;
+while (i < 10) {
+  console.log(i);
+  i++;  // Esto hace que i crezca, así que el bucle eventualmente termina
+}
+
+// JavaScript - bucle infinito INTENCIONAL con break
+while (true) {
+  let entrada = prompt("Escribe 'salir' para terminar:");
+  if (entrada === "salir") {
+    break;  // Esto sale del bucle
+  }
+  console.log("Escribiste: " + entrada);
+}
+
+# Python - bucle infinito ACCIDENTAL (NO ejecutes esto)
+# cuenta = 1
+# while cuenta > 0:
+#     print(cuenta)
+#     cuenta += 1  # cuenta SUBE, así que cuenta > 0 siempre es True
+
+# Python - Versión corregida
+cuenta = 10
+while cuenta > 0:
+    print(cuenta)
+    cuenta -= 1  # cuenta BAJA hacia 0
+
+# Python - bucle infinito INTENCIONAL con break
+while True:
+    comando = input("Ingresa comando (salir para terminar): ")
+    if comando == "salir":
+        break
+    print("Ejecutando:", comando)`,
+    commonMistake:
+      'Las tres causas más comunes de bucles infinitos accidentales: (1) Olvidar incrementar el contador - `while (i < 10)` pero sin `i++`. (2) Actualizar el contador en la dirección equivocada - contar hacia arriba cuando deberías contar hacia abajo, o viceversa. (3) Una condición que nunca puede ser falsa - como `while (x != 10)` cuando x salta de 9 a 11, saltándose el 10 por completo. Si tu programa se congela, un bucle infinito es generalmente el culpable.',
+    tryThisNext:
+      'Practica depurando bucles infinitos: escribe intencionalmente un bucle que se congele, luego arréglalo. Prueba las tres causas comunes listadas arriba. Luego escribe un bucle infinito intencional para un chatbot simple que siga pidiendo mensajes hasta que el usuario escriba "adiós". Usa `break` para salir limpiamente. Aprender a detectar y arreglar bucles infinitos te ahorrará horas de depuración.',
+  },
+  {
+    id: 'top-data-structures',
+    topic: 'Las 5 Estructuras de Datos Principales',
+    simpleExplanation:
+      'Las cinco estructuras de datos que todo programador debe conocer son: (1) Arreglos/Listas - colecciones ordenadas accesibles por índice, (2) Listas Enlazadas - cadenas de nodos donde cada uno apunta al siguiente, (3) Pilas - último en entrar, primero en salir, como una pila de platos, (4) Colas - primero en entrar, primero en salir, como una fila en una tienda, y (5) Tablas Hash/Diccionarios - pares clave-valor para búsquedas instantáneas. Cada una resuelve problemas diferentes, y elegir la correcta hace tu código más rápido y limpio.',
+    whyItMatters:
+      'Las estructuras de datos son los bloques fundamentales de cada programa. Usar la correcta puede significar la diferencia entre código que se ejecuta en milisegundos y código que toma minutos. Los arreglos son geniales para datos ordenados, las pilas impulsan el botón de retroceso de tu navegador y las funciones de deshacer, las colas manejan trabajos de impresión y programación de tareas, y las tablas hash hacen que las bases de datos y cachés sean rápidos. Entender estas cinco cubre aproximadamente el 90% de las necesidades de programación del mundo real.',
+    example: `// JavaScript - Las 5 estructuras de datos en acción
+
+// 1. Array - lista ordenada, acceso rápido por índice
+let tareas = ["email", "código", "reunión"];
+tareas.push("almuerzo");         // agregar al final
+console.log(tareas[0]);          // "email" - acceso instantáneo
+
+// 2. Lista Enlazada - construida con objetos
+let nodo3 = { valor: "C", siguiente: null };
+let nodo2 = { valor: "B", siguiente: nodo3 };
+let nodo1 = { valor: "A", siguiente: nodo2 };
+// Seguir la cadena: A -> B -> C
+
+// 3. Pila - LIFO (Último en Entrar, Primero en Salir)
+let historial = [];
+historial.push("página1");
+historial.push("página2");
+historial.push("página3");
+let ultimaPágina = historial.pop(); // "página3"
+
+// 4. Cola - FIFO (Primero en Entrar, Primero en Salir)
+let colaImpresión = [];
+colaImpresión.push("doc1");
+colaImpresión.push("doc2");
+let siguienteTrabajo = colaImpresión.shift(); // "doc1"
+
+// 5. Tabla Hash (Objeto/Map) - búsqueda por clave
+let directorio = { "Alice": "555-0101", "Bob": "555-0202" };
+console.log(directorio["Alice"]); // búsqueda instantánea
+
+# Python - Las 5 estructuras de datos en acción
+
+# 1. Lista - ordenada, acceso rápido por índice
+tareas = ["email", "código", "reunión"]
+tareas.append("almuerzo")
+print(tareas[0])              # "email"
+
+# 2. Lista Enlazada - usando una clase
+class Nodo:
+    def __init__(self, valor, siguiente=None):
+        self.valor = valor
+        self.siguiente = siguiente
+
+cabeza = Nodo("A", Nodo("B", Nodo("C")))
+
+# 3. Pila - LIFO usando una lista
+historial = []
+historial.append("página1")
+historial.append("página2")
+ultima = historial.pop()    # "página2"
+
+# 4. Cola - FIFO usando deque
+from collections import deque
+cola_impresion = deque(["doc1", "doc2"])
+siguiente = cola_impresion.popleft()  # "doc1"
+
+# 5. Diccionario - búsqueda por clave
+directorio = {"Alice": "555-0101", "Bob": "555-0202"}
+print(directorio["Alice"])    # búsqueda instantánea`,
+    commonMistake:
+      'El error más grande es usar arreglos para todo. Los arreglos son geniales para datos ordenados y acceso rápido por índice, pero buscar un elemento requiere revisar cada uno (lento para listas grandes). Si necesitas búsquedas rápidas, usa una tabla hash/diccionario. Si necesitas procesar elementos en orden de llegada, usa una cola, no un arreglo con seguimiento manual de índices. Otro error es confundir pilas y colas - recuerda: pila = botón deshacer (última acción primero), cola = esperar en fila (primera persona primero).',
+    tryThisNext:
+      'Construye un mini proyecto que use las cinco: Crea una app de tareas donde las tareas se almacenan en un arreglo, deshacer/rehacer usa una pila, una cola de impresión usa una cola, las etiquetas se guardan en un diccionario, y una lista enlazada simple rastrea dependencias de tareas. Este ejercicio te ayudará a entender cuándo y por qué usar cada estructura de datos.',
+  },
 ];
