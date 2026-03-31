@@ -584,4 +584,100 @@ print(phonebook["Alice"])    # instant lookup`,
     tryThisNext:
       'Build a mini project that uses all five: Create a to-do app where tasks are stored in an array, undo/redo uses a stack, a print queue uses a queue, tags are stored in a dictionary, and a simple linked list tracks task dependencies. This exercise will cement when and why to use each data structure!',
   },
+  {
+    id: 'foreach',
+    topic: 'forEach',
+    simpleExplanation:
+      'forEach is a method that runs a function once for every item in an array. Instead of writing a for loop with a counter, you just say "for each item, do this." It reads almost like English: fruits.forEach(fruit => console.log(fruit)). In Python, the equivalent is a regular for...in loop, which works the same way.',
+    whyItMatters:
+      'forEach is one of the most used array methods in JavaScript. It makes your code shorter and easier to read because you don\'t have to manage a counter variable or worry about off-by-one errors. It\'s also your gateway to other powerful methods like .map(), .filter(), and .reduce() that follow the same pattern of "do something to each item."',
+    example: `// JavaScript - forEach basics
+let fruits = ["apple", "banana", "cherry"];
+
+fruits.forEach(function(fruit) {
+  console.log("I like " + fruit);
+});
+// Output: I like apple, I like banana, I like cherry
+
+// Arrow function version (shorter)
+fruits.forEach(fruit => console.log(fruit));
+
+// With index - forEach gives you the position too
+fruits.forEach((fruit, index) => {
+  console.log(index + ": " + fruit);
+});
+// Output: 0: apple, 1: banana, 2: cherry
+
+// Real-world example: update a list of prices
+let prices = [10, 20, 30];
+let total = 0;
+prices.forEach(price => {
+  total += price;
+});
+console.log("Total: $" + total); // Total: $30
+
+# Python - the for...in loop works like forEach
+fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print("I like " + fruit)
+
+# With index using enumerate
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")`,
+    commonMistake:
+      'Trying to use "return" inside forEach to break out of the loop. Unlike a regular for loop, return inside forEach only skips the current item - it does not stop the entire loop. If you need to stop early, use a regular for loop with break, or use .find() or .some() instead. Another mistake is trying to use forEach on something that is not an array, like a string or an object.',
+    tryThisNext:
+      'Start with forEach, then try .map() which is similar but returns a new array. For example: let doubled = numbers.map(n => n * 2). Then try .filter() to keep only items that match a condition. These three methods - forEach, map, filter - are the foundation of modern JavaScript programming.',
+  },
+  {
+    id: 'int',
+    topic: 'int (Integers)',
+    simpleExplanation:
+      'An integer (int) is a whole number with no decimal point - like 1, 42, -7, or 0. In Python, int is a built-in type and you can convert other values to integers using int(). In JavaScript, all numbers are the same type (number), but you can round to whole numbers using Math.floor(), Math.ceil(), or Math.round(). Integers are the most basic number type and you\'ll use them everywhere.',
+    whyItMatters:
+      'Integers are used for counting, indexing, looping, and almost every calculation in programming. Understanding how they work - especially the difference between integers and decimals, and how to convert between types - prevents bugs like getting 2.9999 instead of 3, or crashing because you tried to do math on a string. In Python, knowing int() is essential because input() always returns a string.',
+    example: `// JavaScript - working with whole numbers
+let count = 10;          // This is a whole number
+let price = 9.99;        // This is a decimal
+
+// Convert decimal to integer
+console.log(Math.floor(9.7));  // 9 (rounds down)
+console.log(Math.ceil(9.2));   // 10 (rounds up)
+console.log(Math.round(9.5));  // 10 (rounds to nearest)
+
+// Convert string to integer
+let input = "42";
+let num = parseInt(input);
+console.log(num + 8);   // 50
+
+// Check if a number is an integer
+console.log(Number.isInteger(10));    // true
+console.log(Number.isInteger(10.5));  // false
+
+# Python - int is a built-in type
+count = 10              # int
+price = 9.99            # float
+
+# Convert to int
+print(int(9.7))         # 9 (truncates, does not round)
+print(int("42"))        # 42 (string to int)
+print(round(9.5))       # 10 (rounds to nearest)
+
+# Get user input as a number
+age = int(input("Enter your age: "))
+print("Next year you will be", age + 1)
+
+# Check type
+print(type(10))         # <class 'int'>
+print(type(10.5))       # <class 'float'>
+
+# Integer division
+print(7 // 2)           # 3 (floor division)
+print(7 / 2)            # 3.5 (regular division)`,
+    commonMistake:
+      'In Python, forgetting to convert input() to int before doing math. input() always returns a string, so age = input("Age: ") gives you "25" (a string), not 25 (a number). Writing age + 1 will crash with a TypeError. Always wrap it: age = int(input("Age: ")). In JavaScript, parseInt("10abc") returns 10 (it stops at the first non-digit), which can hide bugs - use Number() for stricter conversion.',
+    tryThisNext:
+      'Write a small calculator that takes two numbers from the user and prints the sum, difference, product, and quotient. In Python, use int(input()) to get the numbers. Then try handling the case where the user types something that is not a number - wrap it in try/except (Python) or use isNaN() (JavaScript) to show a friendly error message.',
+  },
 ];
