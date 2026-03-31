@@ -584,4 +584,100 @@ print(directorio["Alice"])    # búsqueda instantánea`,
     tryThisNext:
       'Construye un mini proyecto que use las cinco: Crea una app de tareas donde las tareas se almacenan en un arreglo, deshacer/rehacer usa una pila, una cola de impresión usa una cola, las etiquetas se guardan en un diccionario, y una lista enlazada simple rastrea dependencias de tareas. Este ejercicio te ayudará a entender cuándo y por qué usar cada estructura de datos.',
   },
+  {
+    id: 'foreach',
+    topic: 'forEach',
+    simpleExplanation:
+      'forEach es un método que ejecuta una función una vez por cada elemento de un arreglo. En lugar de escribir un bucle for con un contador, simplemente dices "para cada elemento, haz esto." Se lee casi como lenguaje natural: frutas.forEach(fruta => console.log(fruta)). En Python, el equivalente es el bucle for...in, que funciona de la misma manera.',
+    whyItMatters:
+      'forEach es uno de los métodos de arreglo más usados en JavaScript. Hace tu código más corto y fácil de leer porque no tienes que manejar una variable contador ni preocuparte por errores de "uno más o uno menos." También es tu puerta de entrada a otros métodos poderosos como .map(), .filter() y .reduce() que siguen el mismo patrón de "haz algo con cada elemento."',
+    example: `// JavaScript - forEach básico
+let frutas = ["manzana", "banana", "cereza"];
+
+frutas.forEach(function(fruta) {
+  console.log("Me gusta " + fruta);
+});
+// Salida: Me gusta manzana, Me gusta banana, Me gusta cereza
+
+// Versión con función flecha (más corta)
+frutas.forEach(fruta => console.log(fruta));
+
+// Con índice - forEach te da la posición también
+frutas.forEach((fruta, indice) => {
+  console.log(indice + ": " + fruta);
+});
+// Salida: 0: manzana, 1: banana, 2: cereza
+
+// Ejemplo real: sumar precios
+let precios = [10, 20, 30];
+let total = 0;
+precios.forEach(precio => {
+  total += precio;
+});
+console.log("Total: $" + total); // Total: $30
+
+# Python - el bucle for...in funciona como forEach
+frutas = ["manzana", "banana", "cereza"]
+
+for fruta in frutas:
+    print("Me gusta " + fruta)
+
+# Con índice usando enumerate
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")`,
+    commonMistake:
+      'Intentar usar "return" dentro de forEach para salir del bucle. A diferencia de un bucle for normal, return dentro de forEach solo salta el elemento actual - no detiene todo el bucle. Si necesitas parar antes, usa un bucle for normal con break, o usa .find() o .some(). Otro error es intentar usar forEach en algo que no es un arreglo, como un string o un objeto.',
+    tryThisNext:
+      'Empieza con forEach, luego prueba .map() que es similar pero devuelve un nuevo arreglo. Por ejemplo: let dobles = numeros.map(n => n * 2). Luego prueba .filter() para quedarte solo con los elementos que cumplan una condición. Estos tres métodos - forEach, map, filter - son la base de la programación moderna en JavaScript.',
+  },
+  {
+    id: 'int',
+    topic: 'int (Enteros)',
+    simpleExplanation:
+      'Un entero (int) es un número sin punto decimal - como 1, 42, -7 o 0. En Python, int es un tipo incorporado y puedes convertir otros valores a enteros usando int(). En JavaScript, todos los números son del mismo tipo (number), pero puedes redondear a números enteros usando Math.floor(), Math.ceil() o Math.round(). Los enteros son el tipo de número más básico y los usarás en todas partes.',
+    whyItMatters:
+      'Los enteros se usan para contar, indexar, hacer bucles y casi todos los cálculos en programación. Entender cómo funcionan - especialmente la diferencia entre enteros y decimales, y cómo convertir entre tipos - previene errores como obtener 2.9999 en lugar de 3, o que tu programa falle porque intentaste hacer matemáticas con un string. En Python, conocer int() es esencial porque input() siempre devuelve un string.',
+    example: `// JavaScript - trabajar con números enteros
+let cuenta = 10;          // Esto es un número entero
+let precio = 9.99;        // Esto es un decimal
+
+// Convertir decimal a entero
+console.log(Math.floor(9.7));  // 9 (redondea hacia abajo)
+console.log(Math.ceil(9.2));   // 10 (redondea hacia arriba)
+console.log(Math.round(9.5));  // 10 (redondea al más cercano)
+
+// Convertir string a entero
+let entrada = "42";
+let num = parseInt(entrada);
+console.log(num + 8);   // 50
+
+// Verificar si un número es entero
+console.log(Number.isInteger(10));    // true
+console.log(Number.isInteger(10.5));  // false
+
+# Python - int es un tipo incorporado
+cuenta = 10              # int
+precio = 9.99            # float
+
+# Convertir a int
+print(int(9.7))         # 9 (trunca, no redondea)
+print(int("42"))        # 42 (string a int)
+print(round(9.5))       # 10 (redondea al más cercano)
+
+# Obtener entrada del usuario como número
+edad = int(input("Ingresa tu edad: "))
+print("El próximo año tendrás", edad + 1)
+
+# Verificar tipo
+print(type(10))         # <class 'int'>
+print(type(10.5))       # <class 'float'>
+
+# División entera
+print(7 // 2)           # 3 (división entera)
+print(7 / 2)            # 3.5 (división regular)`,
+    commonMistake:
+      'En Python, olvidar convertir input() a int antes de hacer matemáticas. input() siempre devuelve un string, así que edad = input("Edad: ") te da "25" (un string), no 25 (un número). Escribir edad + 1 fallará con un TypeError. Siempre envuélvelo: edad = int(input("Edad: ")). En JavaScript, parseInt("10abc") devuelve 10 (se detiene en el primer carácter que no es dígito), lo que puede esconder errores - usa Number() para una conversión más estricta.',
+    tryThisNext:
+      'Escribe una calculadora pequeña que tome dos números del usuario e imprima la suma, resta, producto y cociente. En Python, usa int(input()) para obtener los números. Luego intenta manejar el caso donde el usuario escribe algo que no es un número - envuélvelo en try/except (Python) o usa isNaN() (JavaScript) para mostrar un mensaje amigable.',
+  },
 ];
