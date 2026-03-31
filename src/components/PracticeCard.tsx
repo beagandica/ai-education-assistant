@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../lib/i18n';
 import type { Quiz } from '../types/content';
 import './PracticeCard.css';
@@ -6,21 +6,18 @@ import './PracticeCard.css';
 interface PracticeCardProps {
   quiz: Quiz;
   onAnswer: (correct: boolean) => void;
+  onNext: () => void;
+  isLast: boolean;
 }
 
-export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
+export function PracticeCard({ quiz, onAnswer, onNext, isLast }: PracticeCardProps) {
   const { language } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const cardRef = useRef<HTMLElement>(null);
 
   const handleSelect = (index: number) => {
     if (selectedIndex !== null) return;
     setSelectedIndex(index);
     onAnswer(index === quiz.correctIndex);
-    // Keep the card in view after the explanation expands
-    requestAnimationFrame(() => {
-      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
   };
 
   const getOptionClass = (index: number) => {
@@ -36,7 +33,7 @@ export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
   };
 
   return (
-    <article className="practice-card" ref={cardRef}>
+    <article className="practice-card">
       <span className="practice-card__topic">{quiz.topic}</span>
       <h3 className="practice-card__question">{quiz.question}</h3>
 
@@ -61,6 +58,15 @@ export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
               : (language === 'es' ? '❌ Incorrecto' : '❌ Incorrect')}
           </div>
           <p>{quiz.explanation}</p>
+          <button
+            className="btn btn--primary"
+            style={{ marginTop: '1rem', fontSize: '0.875rem', padding: '0.5rem 1.25rem' }}
+            onClick={onNext}
+          >
+            {isLast
+              ? (language === 'es' ? 'Ver resultados' : 'See results')
+              : (language === 'es' ? 'Siguiente →' : 'Next →')}
+          </button>
         </div>
       )}
     </article>
