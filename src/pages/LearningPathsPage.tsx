@@ -1,6 +1,7 @@
 import { useLanguage } from '../lib/i18n';
 import { LearningPathCard } from '../components/LearningPathCard';
 import { learningPathsEn, learningPathsEs } from '../data/learningPaths';
+import { BackToHome } from '../components/BackToHome';
 
 export default function LearningPathsPage() {
   const { language } = useLanguage();
@@ -9,6 +10,7 @@ export default function LearningPathsPage() {
   return (
     <main className="page">
       <div className="container" style={{ maxWidth: '900px', padding: '2rem 1.5rem' }}>
+        <BackToHome />
         <h1>{language === 'es' ? '🗺️ Rutas de Aprendizaje' : '🗺️ Learning Paths'}</h1>
         <p style={{ color: 'var(--color-text-light)', marginBottom: '2rem' }}>
           {language === 'es'

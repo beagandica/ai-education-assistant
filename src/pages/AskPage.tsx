@@ -3,6 +3,7 @@ import { useLanguage } from '../lib/i18n';
 import { explainQuestion, getAllTopics } from '../lib/explainQuestion';
 import { QuestionForm } from '../components/QuestionForm';
 import { ResponsePanel } from '../components/ResponsePanel';
+import { BackToHome } from '../components/BackToHome';
 import type { TopicResponse } from '../types/content';
 
 export default function AskPage() {
@@ -33,6 +34,7 @@ export default function AskPage() {
   return (
     <main className="page">
       <div className="container" style={{ maxWidth: '800px', padding: '2rem 1.5rem' }}>
+        <BackToHome />
         <h1>{language === 'es' ? '❓ Hacer una Pregunta' : '❓ Ask a Question'}</h1>
         <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>
           {language === 'es'
