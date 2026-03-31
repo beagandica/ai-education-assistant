@@ -375,4 +375,213 @@ print(scores["Alice"])  # 95`,
     tryThisNext:
       'Try implementing a simple to-do list using different data structures. Use an array to store tasks in order, a Set to track unique tags, and a Map/dictionary to store task priorities. Then try implementing a basic undo feature using a stack - push actions onto the stack and pop them to undo!',
   },
+  {
+    id: 'for-loop',
+    topic: 'For Loop',
+    simpleExplanation:
+      'A for loop repeats a block of code a specific number of times. You tell it where to start, when to stop, and how to count. Think of it like a coach saying "do 10 push-ups" - the loop keeps track of which push-up you\'re on and stops when you reach 10. For loops are perfect when you know in advance how many times you need to repeat something.',
+    whyItMatters:
+      'For loops are the most common type of loop in programming. You\'ll use them to go through lists, process data, draw things on screen, and repeat calculations. Once you understand the for loop pattern, you can automate any repetitive task in seconds instead of writing the same code over and over.',
+    example: `// JavaScript - counting from 1 to 5
+for (let i = 1; i <= 5; i++) {
+  console.log("Step " + i);
+}
+// Output: Step 1, Step 2, Step 3, Step 4, Step 5
+
+// JavaScript - looping through an array
+let colors = ["red", "green", "blue"];
+for (let i = 0; i < colors.length; i++) {
+  console.log(colors[i]);
+}
+
+// JavaScript - for...of (simpler way to loop arrays)
+for (let color of colors) {
+  console.log(color);
+}
+
+# Python - counting from 1 to 5
+for i in range(1, 6):
+    print("Step", i)
+
+# Python - looping through a list
+colors = ["red", "green", "blue"]
+for color in colors:
+    print(color)
+
+# Python - using range with step
+for i in range(0, 10, 2):
+    print(i)  # 0, 2, 4, 6, 8`,
+    commonMistake:
+      'Off-by-one errors are the most common for loop mistake. In JavaScript, `for (let i = 0; i <= 5; i++)` runs 6 times (0 through 5), not 5. In Python, `range(1, 5)` gives you 1, 2, 3, 4 - it stops before 5. Always double-check your start and end values. Another mistake is modifying the array you\'re looping through while inside the loop, which can cause skipped items or infinite loops.',
+    tryThisNext:
+      'Write a for loop that prints only the odd numbers from 1 to 20. Then try a nested for loop - a loop inside a loop - to print a multiplication table. Once comfortable, try using `for...of` in JavaScript or `enumerate()` in Python when you need both the index and the value.',
+  },
+  {
+    id: 'while-loop',
+    topic: 'While Loop',
+    simpleExplanation:
+      'A while loop keeps repeating a block of code as long as a condition is true. Unlike a for loop where you know the count upfront, a while loop is like saying "keep stirring until the sauce thickens" - you don\'t know exactly how many stirs it will take, but you know when to stop. The loop checks its condition before each repetition.',
+    whyItMatters:
+      'While loops are essential when you don\'t know in advance how many times you need to repeat. Think of reading user input until they type "quit", waiting for a download to finish, or playing a game until the player loses. Any time the number of repetitions depends on something that changes during the loop, a while loop is the right choice.',
+    example: `// JavaScript - basic while loop
+let count = 1;
+while (count <= 5) {
+  console.log("Count: " + count);
+  count++;
+}
+
+// JavaScript - user input simulation
+let password = "";
+let attempts = 0;
+while (password !== "secret" && attempts < 3) {
+  password = prompt("Enter password:");
+  attempts++;
+}
+
+# Python - basic while loop
+count = 1
+while count <= 5:
+    print("Count:", count)
+    count += 1
+
+# Python - input loop
+password = ""
+attempts = 0
+while password != "secret" and attempts < 3:
+    password = input("Enter password: ")
+    attempts += 1
+
+if password == "secret":
+    print("Access granted!")
+else:
+    print("Too many attempts.")`,
+    commonMistake:
+      'The biggest danger with while loops is forgetting to update the condition variable, creating an infinite loop. If you write `while (count <= 5)` but never increase `count`, the loop runs forever. Always make sure something inside the loop changes the condition so it eventually becomes false. Another common mistake is checking the wrong condition - using `>` when you mean `<`, or using `&&` when you need `||`.',
+    tryThisNext:
+      'Write a number guessing game: pick a random number between 1 and 100, then use a while loop to let the user guess until they get it right, giving "too high" or "too low" hints. Then try adding a maximum number of guesses. This is a classic while loop exercise because you genuinely don\'t know how many guesses it will take!',
+  },
+  {
+    id: 'infinite-loop',
+    topic: 'Infinite Loop',
+    simpleExplanation:
+      'An infinite loop is a loop that never stops running because its exit condition is never met. It\'s like walking on a treadmill - no matter how many steps you take, you never arrive. Sometimes infinite loops are bugs (you forgot to update a counter), but sometimes they\'re intentional, like a game loop or a server that listens for requests forever.',
+    whyItMatters:
+      'Infinite loops are one of the most common bugs beginners encounter, and they can freeze your program or even your computer. Understanding why they happen helps you avoid them. At the same time, controlled infinite loops (with proper break conditions) are a legitimate pattern used in games, servers, and interactive programs. Knowing the difference between accidental and intentional is key.',
+    example: `// JavaScript - ACCIDENTAL infinite loop (DON'T run this!)
+// let i = 0;
+// while (i < 10) {
+//   console.log(i);
+//   // Oops! Forgot i++ so i is always 0
+// }
+
+// JavaScript - Fixed version
+let i = 0;
+while (i < 10) {
+  console.log(i);
+  i++;  // This makes i grow, so the loop eventually ends
+}
+
+// JavaScript - INTENTIONAL infinite loop with break
+while (true) {
+  let input = prompt("Type 'quit' to exit:");
+  if (input === "quit") {
+    break;  // This exits the loop
+  }
+  console.log("You typed: " + input);
+}
+
+# Python - ACCIDENTAL infinite loop (DON'T run this!)
+# count = 1
+# while count > 0:
+#     print(count)
+#     count += 1  # count goes UP, so count > 0 is always True
+
+# Python - Fixed version
+count = 10
+while count > 0:
+    print(count)
+    count -= 1  # count goes DOWN toward 0
+
+# Python - INTENTIONAL infinite loop with break
+while True:
+    command = input("Enter command (quit to exit): ")
+    if command == "quit":
+        break
+    print("Running:", command)`,
+    commonMistake:
+      'The three most common causes of accidental infinite loops: (1) Forgetting to increment the counter - `while (i < 10)` but no `i++`. (2) Updating the counter in the wrong direction - counting up when you should count down, or vice versa. (3) A condition that can never become false - like `while (x != 10)` when x jumps from 9 to 11, skipping 10 entirely. If your program freezes, an infinite loop is usually the culprit.',
+    tryThisNext:
+      'Practice debugging infinite loops: intentionally write a loop that freezes, then fix it. Try all three common causes listed above. Then write an intentional infinite loop for a simple chatbot that keeps asking for messages until the user types "bye". Use `break` to exit cleanly. Learning to spot and fix infinite loops will save you hours of debugging!',
+  },
+  {
+    id: 'top-data-structures',
+    topic: 'Top 5 Data Structures',
+    simpleExplanation:
+      'The five data structures every programmer should know are: (1) Arrays/Lists - ordered collections accessed by index, (2) Linked Lists - chains of nodes where each points to the next, (3) Stacks - last-in-first-out like a pile of plates, (4) Queues - first-in-first-out like a line at a store, and (5) Hash Tables/Dictionaries - key-value pairs for instant lookups. Each one solves different problems, and picking the right one makes your code faster and cleaner.',
+    whyItMatters:
+      'Data structures are the building blocks of every program. Using the right one can mean the difference between code that runs in milliseconds and code that takes minutes. Arrays are great for ordered data, stacks power your browser\'s back button and undo features, queues manage print jobs and task scheduling, and hash tables make databases and caches fast. Understanding these five covers about 90% of real-world programming needs.',
+    example: `// JavaScript - All 5 data structures in action
+
+// 1. Array - ordered list, fast access by index
+let tasks = ["email", "code", "meeting"];
+tasks.push("lunch");         // add to end
+console.log(tasks[0]);       // "email" - instant access
+
+// 2. Linked List - built with objects (no built-in type)
+let node3 = { value: "C", next: null };
+let node2 = { value: "B", next: node3 };
+let node1 = { value: "A", next: node2 };
+// Follow the chain: A -> B -> C
+
+// 3. Stack - LIFO (Last In, First Out)
+let history = [];
+history.push("page1");
+history.push("page2");
+history.push("page3");
+let lastPage = history.pop(); // "page3" - most recent
+
+// 4. Queue - FIFO (First In, First Out)
+let printQueue = [];
+printQueue.push("doc1");
+printQueue.push("doc2");
+let nextJob = printQueue.shift(); // "doc1" - first added
+
+// 5. Hash Table (Object/Map) - key-value lookup
+let phonebook = { "Alice": "555-0101", "Bob": "555-0202" };
+console.log(phonebook["Alice"]); // instant lookup
+
+# Python - All 5 data structures in action
+
+# 1. List - ordered, fast access by index
+tasks = ["email", "code", "meeting"]
+tasks.append("lunch")
+print(tasks[0])              # "email"
+
+# 2. Linked List - using a class
+class Node:
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+head = Node("A", Node("B", Node("C")))
+
+# 3. Stack - LIFO using a list
+history = []
+history.append("page1")
+history.append("page2")
+last_page = history.pop()    # "page2"
+
+# 4. Queue - FIFO using deque
+from collections import deque
+print_queue = deque(["doc1", "doc2"])
+next_job = print_queue.popleft()  # "doc1"
+
+# 5. Dictionary - key-value lookup
+phonebook = {"Alice": "555-0101", "Bob": "555-0202"}
+print(phonebook["Alice"])    # instant lookup`,
+    commonMistake:
+      'The biggest mistake is using arrays for everything. Arrays are great for ordered data and fast index access, but searching for an item requires checking every element (slow for large lists). If you need fast lookups, use a hash table/dictionary. If you need to process items in order of arrival, use a queue, not an array with manual index tracking. Another mistake is confusing stacks and queues - remember: stack = undo button (last action first), queue = waiting in line (first person first).',
+    tryThisNext:
+      'Build a mini project that uses all five: Create a to-do app where tasks are stored in an array, undo/redo uses a stack, a print queue uses a queue, tags are stored in a dictionary, and a simple linked list tracks task dependencies. This exercise will cement when and why to use each data structure!',
+  },
 ];
