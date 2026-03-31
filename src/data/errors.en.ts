@@ -63,7 +63,7 @@ name = name + " Smith";`,
   },
   {
     id: 'js-cannot-read-properties',
-    pattern: '(TypeError: Cannot read propert(y|ies) of (undefined|null))',
+    pattern: '((?:TypeError:\\s*)?Cannot read propert(?:y|ies) of (?:undefined|null))',
     title: 'TypeError: Cannot read properties of undefined',
     whatItMeans:
       'You tried to access a property (like `.name` or `.length`) on something that is `undefined` or `null`. The object you expected to be there doesn\'t exist.',
@@ -301,4 +301,195 @@ if len(colors) > 0:
 else:
     print("The list is empty")`,
   },
+  {
+  id: 'js-max-call-stack',
+  pattern: '(?:RangeError:?\s*)?Maximum call\s*stack size exceeded',
+  title: 'Maximum call stack size exceeded',
+  whatItMeans: 'JavaScript tried to keep calling functions until it ran out of space for more calls. This usually means there is a loop of function calls that never ends.',
+  commonCauses: [
+    'A function that calls itself without a proper base case',
+    'Two functions calling each other in a cycle',
+    'Accidentally updating state in a React render path so the component keeps re rendering',
+    'Very deep nested data without limits when recursing over it'
+  ],
+  stepsToFix: [
+    'Find the function mentioned near the error and look for where it calls itself or other functions in a loop',
+    'If it is recursion, add a clear base case that stops calling the function when work is done',
+    'For React, move state updates into event handlers or effects so they do not run on every render',
+    'Test with small input first, then gradually increase the size to be sure it stops correctly'
+  ],
+  exampleFix: '```js\n// Bad recursion - never stops\nfunction countdown(n) {\n  return countdown(n - 1);\n}\n\n// Fixed version with a base case\nfunction countdownFixed(n) {\n  if (n <= 0) {\n    console.log("Done");\n    return;\n  }\n  console.log(n);\n  countdownFixed(n - 1);\n}\n\ncountdownFixed(3); // 3, 2, 1, Done\n```'
+},
+{
+  id: 'py-syntax-error',
+  pattern: 'SyntaxError:?.*',
+  title: 'SyntaxError',
+  whatItMeans: 'Python could not even start running your code because something is wrong with the structure of the program.',
+  commonCauses: [
+    'Missing colon after if, for, while, def, or class',
+    'Lines that should be indented are not, or extra indent where it is not allowed',
+    'Mismatched brackets, parentheses, or quotes',
+    'Accidentally writing two statements on one line without proper separators'
+  ],
+  stepsToFix: [
+    'Look at the line number in the error and also the line just above it',
+    'Check that every if, for, while, def, and class line ends with a colon',
+    'Make sure parentheses, brackets, and quotes all open and close in pairs',
+    'Fix indentation so blocks line up in a clean staircase shape'
+  ],
+  exampleFix: '```python\n# Bad code\nif x > 10\n    print("Big")\n\n# Fixed code\nif x > 10:\n    print("Big")\n```'
+},
+{
+  id: 'py-type-error',
+  pattern: 'TypeError(?!:.*NoneType).*',
+  title: 'TypeError - wrong type',
+  whatItMeans: 'Python found a value of the wrong type for an operation, such as adding a string to a number.',
+  commonCauses: [
+    'Trying to add or join string and integer directly',
+    'Passing the wrong type of argument into a function',
+    'Using list or dict where a number is expected, or the reverse',
+    'Forgetting to convert input text to int or float before doing math'
+  ],
+  stepsToFix: [
+    'Read the error message to see which types Python is complaining about',
+    'Use int, float, or str to convert values before using them together',
+    'Print out type(value) to confirm what type you actually have',
+    'Update the function so it receives the type it expects, or change the call site'
+  ],
+  exampleFix: '```python\nage = "12"\n# Bad - string plus int\n# total = age + 5\n\n# Fixed - convert to int first\ntotal = int(age) + 5\nprint(total)  # 17\n```'
+},
+{
+  id: 'py-value-error',
+  pattern: 'ValueError:?.*',
+  title: 'ValueError',
+  whatItMeans: 'Python understood the type you used but the specific value was not allowed.',
+  commonCauses: [
+    'Calling int on text that is not a number',
+    'Using a negative number where only positive numbers make sense',
+    'Passing an invalid choice into a function that only accepts certain strings',
+    'Bad data in a file or user input that does not match the expected format'
+  ],
+  stepsToFix: [
+    'Read the full message to see which value caused the problem',
+    'Validate user input before converting or processing it',
+    'Add try and except ValueError so you can show a friendly message instead of crashing',
+    'If data comes from a file or API, inspect a few rows to make sure the format is right'
+  ],
+  exampleFix: '```python\ntext = "hello"\n\ntry:\n    number = int(text)\nexcept ValueError:\n    print("Please enter digits only")\n```'
+},
+{
+  id: 'py-key-error',
+  pattern: 'KeyError:?.*',
+  title: 'KeyError',
+  whatItMeans: 'You asked a dictionary for a key that does not exist.',
+  commonCauses: [
+    'Spelling the key name differently than how it was stored',
+    'Assuming every item has the same keys when some do not',
+    'Reading data from JSON or a file where some fields are optional',
+    'Using a dynamic key value that is not in the dictionary'
+  ],
+  stepsToFix: [
+    'Print the dictionary keys with dict_var.keys() to see what is actually there',
+    'Use the get method with a default value instead of direct indexing',
+    'Check for the key with in before accessing it',
+    'Clean or validate your data so missing keys are handled on purpose'
+  ],
+  exampleFix: '```python\nuser = {"name": "Sam"}\n\n# Safer access\nemail = user.get("email", "no email provided")\nprint(email)\n```'
+},
+{
+  id: 'py-attribute-error',
+  pattern: 'AttributeError:?.*',
+  title: 'AttributeError',
+  whatItMeans: 'Your code tried to use an attribute or method that the object does not have.',
+  commonCauses: [
+    'Calling a method from the wrong type of object',
+    'Assuming a variable has a value but it is None',
+    'Spelling the attribute or method name differently from how it is defined',
+    'Mixing up list, dict, and string methods'
+  ],
+  stepsToFix: [
+    'Look at the message to see which attribute name is missing',
+    'Use print(type(value)) to confirm what kind of object you really have',
+    'Check the documentation or autocomplete to use the correct method name',
+    'Add checks for None before calling methods if a value might be missing'
+  ],
+  exampleFix: '```python\nname = "Ada"\n# Bad - list method on string\n# name.append("!")\n\n# Fixed - string method\nname = name + "!"\nprint(name)  # Ada!\n```'
+},
+{
+  id: 'py-import-error',
+  pattern: '(?:ModuleNotFoundError|ImportError):?.*',
+  title: 'ImportError or ModuleNotFoundError',
+  whatItMeans: 'Python could not find or load a module that you tried to import.',
+  commonCauses: [
+    'Misspelling the module name in the import statement',
+    'The package is not installed in your environment',
+    'Running the script from a folder where local imports do not line up',
+    'Using a virtual environment that does not have the dependency installed yet'
+  ],
+  stepsToFix: [
+    'Check the import line and correct the module name if needed',
+    'Run pip install package name in the correct environment',
+    'Print sys.path to understand where Python is looking for modules',
+    'If using a project layout, run the script from the project root or use python -m package.module'
+  ],
+  exampleFix: '```python\n# Terminal\n# pip install requests\n\nimport requests\nresponse = requests.get("https://example.com")\nprint(response.status_code)\n```'
+},
+{
+  id: 'py-zero-division',
+  pattern: 'ZeroDivisionError:?.*',
+  title: 'ZeroDivisionError',
+  whatItMeans: 'Your code tried to divide by zero, which is not allowed in math.',
+  commonCauses: [
+    'User entered 0 for a divisor',
+    'Data from a file or API contained zeros that you did not expect',
+    'Counters that were never updated but still used as divisors',
+    'Using averages without checking if there are any items first'
+  ],
+  stepsToFix: [
+    'Check the value that you are dividing by before the division happens',
+    'Add an if statement to handle the zero case in a special way',
+    'Guard averages by checking count > 0 first',
+    'Log or print the inputs when the error happens to understand real data'
+  ],
+  exampleFix: '```python\ntotal = 10\ncount = 0\n\nif count == 0:\n    print("No items yet, cannot compute average")\nelse:\n    average = total / count\n    print(average)\n```'
+},
+{
+  id: 'py-file-not-found',
+  pattern: 'FileNotFoundError:?.*',
+  title: 'FileNotFoundError',
+  whatItMeans: 'Python tried to open a file, but that file path doesn not exist.',
+  commonCauses: [
+    'Using the wrong file name or file extension',
+    'Running the script from a different folder than you expect',
+    'Forgetting to include the data file in the project or upload it',
+    'Using a relative path that does not match the current working directory'
+  ],
+  stepsToFix: [
+    'Print the current working directory with import os and os.getcwd()',
+    'Check that the file name and extension are exactly correct',
+    'Try using an absolute path while you debug the problem',
+    'Place the file in a known folder and build the path with os.path.join'
+  ],
+  exampleFix: '```python\nimport os\n\nprint(os.getcwd())\nfile_path = os.path.join("data", "scores.csv")\n\nwith open(file_path) as f:\n    print(f.readline())\n```'
+},
+{
+  id: 'py-recursion-error',
+  pattern: 'RecursionError:?.*',
+  title: 'RecursionError - maximum recursion depth exceeded',
+  whatItMeans: 'Your recursive function called itself too many times without stopping.',
+  commonCauses: [
+    'Missing or incorrect base case in a recursive function',
+    'Recursive call that moves in the wrong direction so it never reaches the base case',
+    'Processing very deep or cyclic data structures with recursion only',
+    'Accidental mutual recursion where two functions call each other'
+  ],
+  stepsToFix: [
+    'Find the recursive function named in the traceback',
+    'Add a base case that returns without making another recursive call',
+    'Make sure each recursive call moves closer to the base case',
+    'For very deep data, consider rewriting the algorithm to use a loop and an explicit stack'
+  ],
+  exampleFix: '```python\n# Bad - base case is wrong\n# def factorial(n):\n#     return n * factorial(n)\n\n# Fixed version\ndef factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))  # 120\n```'
+}
+
 ];

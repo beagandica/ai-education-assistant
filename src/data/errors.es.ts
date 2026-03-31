@@ -63,7 +63,7 @@ name = name + " Smith";`,
   },
   {
     id: 'js-cannot-read-properties',
-    pattern: '(TypeError: Cannot read propert(y|ies) of (undefined|null))',
+    pattern: '((?:TypeError:\\s*)?Cannot read propert(?:y|ies) of (?:undefined|null))',
     title: 'TypeError: No se pueden leer propiedades de undefined',
     whatItMeans:
       'Intentaste acceder a una propiedad (como `.name` o `.length`) de algo que es `undefined` o `null`. El objeto que esperabas encontrar no existe.',
@@ -301,4 +301,195 @@ if len(colors) > 0:
 else:
     print("The list is empty")`,
   },
+  {
+  id: 'js-max-call-stack',
+  pattern: '(?:RangeError:?\s*)?Maximum call\s*stack size exceeded',
+  title: 'Maximum call stack size exceeded',
+  whatItMeans: 'JavaScript trató de seguir llamando funciones hasta que se quedó sin espacio para más llamadas. Casi siempre significa que hay una cadena de llamadas que nunca termina.',
+  commonCauses: [
+    'Una función que se llama a sí misma sin una condición clara de salida',
+    'Dos funciones que se llaman una a la otra en un ciclo',
+    'Actualizar el estado en React dentro del render para que el componente se vuelva a renderizar sin parar',
+    'Recorrer datos muy anidados con recursión sin límite'
+  ],
+  stepsToFix: [
+    'Busca en el mensaje el nombre de la función y revisa dónde se llama a sí misma o entra en un ciclo',
+    'Si usas recursión, agrega un caso base que detenga la función cuando ya terminó su trabajo',
+    'En React, mueve las actualizaciones de estado a manejadores de eventos o efectos en lugar de hacerlas en render',
+    'Prueba primero con entradas pequeñas y luego aumenta el tamaño para confirmar que la función siempre termina'
+  ],
+  exampleFix: '```js\n// Recursión incorrecta - nunca termina\nfunction countdown(n) {\n  return countdown(n - 1);\n}\n\n// Versión corregida con caso base\nfunction countdownFixed(n) {\n  if (n <= 0) {\n    console.log("Listo");\n    return;\n  }\n  console.log(n);\n  countdownFixed(n - 1);\n}\n\ncountdownFixed(3); // 3, 2, 1, Listo\n```'
+},
+{
+  id: 'py-syntax-error',
+  pattern: 'SyntaxError:?.*',
+  title: 'SyntaxError',
+  whatItMeans: 'Python no pudo empezar a ejecutar tu programa porque la estructura del código es inválida.',
+  commonCauses: [
+    'Falta de dos puntos después de if, for, while, def o class',
+    'Líneas que deberían estar indentadas pero no lo están, o indentación extra donde no corresponde',
+    'Paréntesis, corchetes o comillas que no cierran en pareja',
+    'Escribir dos instrucciones en una sola línea sin separarlas bien'
+  ],
+  stepsToFix: [
+    'Mira el número de línea del error y también la línea anterior',
+    'Verifica que cada if, for, while, def y class termine con dos puntos',
+    'Asegúrate de que todos los paréntesis, corchetes y comillas abren y cierran en pares',
+    'Ajusta la indentación para que los bloques formen una escalera limpia'
+  ],
+  exampleFix: '```python\n# Código incorrecto\nif x > 10\n    print("Grande")\n\n# Código corregido\nif x > 10:\n    print("Grande")\n```'
+},
+{
+  id: 'py-type-error',
+  pattern: 'TypeError(?!:.*NoneType).*',
+  title: 'TypeError - tipo incorrecto',
+  whatItMeans: 'Python encontró un valor del tipo equivocado para una operación, por ejemplo sumar un texto con un número.',
+  commonCauses: [
+    'Intentar sumar o concatenar un string con un entero directamente',
+    'Pasar un tipo de dato diferente al que espera una función',
+    'Usar una lista o un diccionario donde se esperaba un número, o al revés',
+    'Olvidar convertir la entrada de texto a int o float antes de hacer operaciones'
+  ],
+  stepsToFix: [
+    'Lee el mensaje para ver qué tipos está comparando Python',
+    'Usa int, float o str para convertir los valores antes de combinarlos',
+    'Imprime type(valor) para confirmar de qué tipo es realmente',
+    'Ajusta la función para que reciba el tipo correcto o corrige la llamada a la función'
+  ],
+  exampleFix: '```python\nage = "12"\n# Incorrecto - string más int\n# total = age + 5\n\n# Corregido - convertir a int primero\ntotal = int(age) + 5\nprint(total)  # 17\n```'
+},
+{
+  id: 'py-value-error',
+  pattern: 'ValueError:?.*',
+  title: 'ValueError',
+  whatItMeans: 'Python aceptó el tipo de dato, pero el valor concreto no es válido para esa operación.',
+  commonCauses: [
+    'Llamar a int con un texto que no es un número',
+    'Usar un número negativo donde solo tienen sentido valores positivos',
+    'Pasar una cadena que no está entre las opciones válidas de una función',
+    'Datos incorrectos en un archivo o entrada de usuario que no respetan el formato esperado'
+  ],
+  stepsToFix: [
+    'Lee el mensaje completo para ver qué valor causó el problema',
+    'Valida la entrada de usuario antes de convertirla o procesarla',
+    'Agrega un bloque try y except ValueError para mostrar un mensaje amigable en lugar de fallar',
+    'Si los datos vienen de un archivo o API, revisa algunas filas para confirmar el formato'
+  ],
+  exampleFix: '```python\ntext = "hola"\n\ntry:\n    number = int(text)\nexcept ValueError:\n    print("Por favor escribe solo dígitos")\n```'
+},
+{
+  id: 'py-key-error',
+  pattern: 'KeyError:?.*',
+  title: 'KeyError',
+  whatItMeans: 'Le pediste a un diccionario una clave que no existe.',
+  commonCauses: [
+    'Escribir el nombre de la clave con una ortografía distinta a la guardada',
+    'Asumir que todos los elementos tienen las mismas claves cuando algunos no las tienen',
+    'Leer datos de JSON o archivos donde ciertos campos son opcionales',
+    'Usar un valor dinámico como clave que no está en el diccionario'
+  ],
+  stepsToFix: [
+    'Imprime las claves con dict_var.keys() para ver qué hay realmente',
+    'Usa el método get con un valor por defecto en lugar de indexar directamente',
+    'Verifica si la clave está presente con in antes de accederla',
+    'Limpia o valida los datos para manejar claves faltantes de forma intencional'
+  ],
+  exampleFix: '```python\nuser = {"name": "Sam"}\n\n# Acceso más seguro\nemail = user.get("email", "sin correo")\nprint(email)\n```'
+},
+{
+  id: 'py-attribute-error',
+  pattern: 'AttributeError:?.*',
+  title: 'AttributeError',
+  whatItMeans: 'Tu código intentó usar un atributo o método que ese objeto no tiene.',
+  commonCauses: [
+    'Llamar un método que pertenece a otro tipo de objeto',
+    'Asumir que una variable tiene valor cuando en realidad es None',
+    'Escribir mal el nombre de un atributo o método',
+    'Confundir métodos de lista, diccionario y cadena de texto'
+  ],
+  stepsToFix: [
+    'Mira el mensaje para ver qué nombre de atributo falta',
+    'Imprime type(valor) para saber de qué tipo es el objeto',
+    'Revisa la documentación o el autocompletado para usar el nombre correcto del método',
+    'Agrega comprobaciones de None antes de llamar métodos si el valor puede faltar'
+  ],
+  exampleFix: '```python\nname = "Ada"\n# Incorrecto - método de lista en un string\n# name.append("!")\n\n# Corregido - usar operación de string\nname = name + "!"\nprint(name)  # Ada!\n```'
+},
+{
+  id: 'py-import-error',
+  pattern: '(?:ModuleNotFoundError|ImportError):?.*',
+  title: 'ImportError o ModuleNotFoundError',
+  whatItMeans: 'Python no pudo encontrar o cargar un módulo que intentaste importar.',
+  commonCauses: [
+    'Escribir mal el nombre del módulo en la instrucción import',
+    'No tener instalado el paquete en el entorno actual',
+    'Ejecutar el script desde una carpeta donde los imports locales no coinciden',
+    'Usar un entorno virtual que no tiene aún esa dependencia instalada'
+  ],
+  stepsToFix: [
+    'Revisa la línea de import y corrige el nombre del módulo si es necesario',
+    'Ejecuta pip install nombre_del_paquete en el entorno correcto',
+    'Imprime sys.path para entender dónde busca Python los módulos',
+    'En proyectos grandes, ejecuta el script desde la carpeta raíz o usa python -m paquete.modulo'
+  ],
+  exampleFix: '```python\n# Terminal\n# pip install requests\n\nimport requests\nresponse = requests.get("https://example.com")\nprint(response.status_code)\n```'
+},
+{
+  id: 'py-zero-division',
+  pattern: 'ZeroDivisionError:?.*',
+  title: 'ZeroDivisionError',
+  whatItMeans: 'Tu código intentó dividir entre cero, algo que no está permitido en matemáticas.',
+  commonCauses: [
+    'La persona usuaria ingresó 0 como divisor',
+    'Los datos de un archivo o API contienen ceros que no esperabas',
+    'Contadores que nunca se actualizan pero se usan como divisores',
+    'Calcular promedios sin revisar si hay elementos suficientes'
+  ],
+  stepsToFix: [
+    'Revisa el valor por el que estás dividiendo antes de hacer la operación',
+    'Agrega un if para manejar el caso en que el divisor sea cero',
+    'En promedios, verifica primero que count > 0',
+    'Imprime las entradas cuando ocurra el error para entender los datos reales'
+  ],
+  exampleFix: '```python\ntotal = 10\ncount = 0\n\nif count == 0:\n    print("No hay elementos, no se puede calcular el promedio")\nelse:\n    average = total / count\n    print(average)\n```'
+},
+{
+  id: 'py-file-not-found',
+  pattern: 'FileNotFoundError:?.*',
+  title: 'FileNotFoundError',
+  whatItMeans: 'Python intentó abrir un archivo, pero la ruta que diste no existe.',
+  commonCauses: [
+    'Usar un nombre de archivo o extensión incorrectos',
+    'Ejecutar el script desde otra carpeta distinta a la que imaginabas',
+    'Olvidar incluir el archivo de datos en el proyecto o subirlo al entorno',
+    'Usar una ruta relativa que no coincide con el directorio de trabajo actual'
+  ],
+  stepsToFix: [
+    'Imprime el directorio de trabajo con import os y os.getcwd()',
+    'Confirma que el nombre de archivo y la extensión sean exactamente correctos',
+    'Mientras depuras, prueba con una ruta absoluta para ver si el archivo existe',
+    'Coloca el archivo en una carpeta conocida y arma la ruta con os.path.join'
+  ],
+  exampleFix: '```python\nimport os\n\nprint(os.getcwd())\nfile_path = os.path.join("data", "scores.csv")\n\nwith open(file_path) as f:\n    print(f.readline())\n```'
+},
+{
+  id: 'py-recursion-error',
+  pattern: 'RecursionError:?.*',
+  title: 'RecursionError - máximo nivel de recursión excedido',
+  whatItMeans: 'Tu función recursiva se llamó a sí misma demasiadas veces sin detenerse.',
+  commonCauses: [
+    'Falta de caso base o caso base incorrecto en una función recursiva',
+    'Llamadas recursivas que avanzan en la dirección equivocada y nunca llegan al caso base',
+    'Uso de recursión sobre estructuras de datos muy profundas o con ciclos',
+    'Recursión mutua accidental donde dos funciones se llaman entre sí'
+  ],
+  stepsToFix: [
+    'Ubica la función recursiva que aparece en el traceback',
+    'Agrega un caso base que devuelva un resultado sin hacer otra llamada recursiva',
+    'Verifica que cada llamada recursiva acerque el valor al caso base',
+    'Para datos muy profundos, considera reescribir el algoritmo con un ciclo y una pila explícita'
+  ],
+  exampleFix: '```python\n# Incorrecto - el caso base está mal\n# def factorial(n):\n#     return n * factorial(n)\n\n# Versión corregida\ndef factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))  # 120\n```'
+}
+
 ];
