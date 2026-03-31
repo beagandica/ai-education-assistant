@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../lib/i18n';
-import { explainError } from '../lib/explainError';
+import { explainError, getCommonErrors } from '../lib/explainError';
 import type { ErrorResponse } from '../types/content';
 import './ErrorExplainer.css';
 
@@ -10,6 +10,8 @@ export function ErrorExplainer() {
   const [result, setResult] = useState<ErrorResponse | null>(null);
   const [searched, setSearched] = useState(false);
 
+  const allErrors = getCommonErrors(language);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = errorMsg.trim();
@@ -18,9 +20,9 @@ export function ErrorExplainer() {
     setSearched(true);
   };
 
-  const handleExample = (example: string) => {
-    setErrorMsg(example);
-    setResult(explainError(example, language));
+  const handleExample = (error: ErrorResponse) => {
+    setErrorMsg(error.title);
+    setResult(error);
     setSearched(true);
   };
 
@@ -47,6 +49,24 @@ export function ErrorExplainer() {
           {language === 'es' ? 'Explicar' : 'Explain'}
         </button>
       </form>
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', marginBottom: '0.75rem' }}>
+          {language === 'es' ? 'Elige un error:' : 'Pick an error:'}
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+          {allErrors.map((err) => (
+            <button
+              key={err.id}
+              className={`btn ${result?.id === err.id ? 'btn--primary' : 'btn--outline'}`}
+              style={{ fontSize: '0.8rem', padding: '0.4rem 0.75rem' }}
+              onClick={() => handleExample(err)}
+            >
+              {err.title}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {result ? (
         <div className="error-explainer__result">
@@ -106,30 +126,9 @@ export function ErrorExplainer() {
           <span className="error-explainer__empty-icon">🐛</span>
           <p>
             {language === 'es'
-              ? 'Pega un mensaje de error y te ayudaremos a entenderlo.'
-              : "Paste an error message and we'll help you understand it."}
+              ? 'Pega un mensaje de error o elige uno de arriba para aprender.'
+              : "Paste an error message or pick one above to learn."}
           </p>
-          <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
-            {language === 'es' ? 'Prueba con estos ejemplos:' : 'Try these examples:'}
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center', marginTop: '0.75rem' }}>
-            {[
-              'TypeError: x is not a function',
-              'Cannot read properties of undefined',
-              'SyntaxError: Unexpected token',
-              'ReferenceError: x is not defined',
-              'Maximum call stack size exceeded',
-            ].map((example) => (
-              <button
-                key={example}
-                className="btn btn--outline"
-                style={{ fontSize: '0.8rem', padding: '0.4rem 0.75rem' }}
-                onClick={() => handleExample(example)}
-              >
-                {example}
-              </button>
-            ))}
-          </div>
         </div>
       )}
     </div>
