@@ -8,13 +8,13 @@ AI Education Assistant is a beginner-friendly learning tool designed to make cod
 
 ## Features
 
-- 🎓 **Ask a Question** — get structured explanations for beginner coding topics
-- 💻 **Explain Code** — paste JavaScript or Python code and get line-by-line explanations
-- 🐛 **Explain Error** — input error messages and get beginner-friendly fix guidance
-- 🧠 **Practice Mode** — multiple choice quizzes on variables, loops, conditionals, functions
-- 🗺️ **Learning Paths** — guided roadmaps for Python, JavaScript, and Web Development
-- 🌐 **Bilingual** — full English and Spanish support
-- 📱 **Responsive** — works on desktop, tablet, and mobile
+- 🎓 **Ask a Question** - get structured explanations for beginner coding topics
+- 💻 **Explain Code** - paste JavaScript or Python code and get line-by-line explanations
+- 🐛 **Explain Error** - input error messages and get beginner-friendly fix guidance
+- 🧠 **Practice Mode** - multiple choice quizzes on variables, loops, conditionals, functions
+- 🗺️ **Learning Paths** - guided roadmaps for Python, JavaScript, and Web Development
+- 🌐 **Bilingual** - full English and Spanish support
+- 📱 **Responsive** - works on desktop, tablet, and mobile
 
 ## Tech Stack
 
@@ -66,7 +66,7 @@ The project auto-deploys to **GitHub Pages** via GitHub Actions on every push to
 src/
 ├── components/       # Reusable UI components (Navbar, Hero, Footer, feature cards, etc.)
 ├── data/             # Static content datasets for quizzes, errors, topics, and learning paths (EN + ES)
-├── lib/              # Core logic — code/error/question explainers, practice questions, i18n
+├── lib/              # Core logic - code/error/question explainers, practice questions, i18n
 ├── pages/            # Route-level page components (Home, Ask, ExplainCode, ExplainError, Practice, LearningPaths)
 ├── types/            # Shared TypeScript type definitions
 ├── App.tsx           # Root component with route definitions
