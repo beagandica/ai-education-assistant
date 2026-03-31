@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLanguage } from '../lib/i18n';
 import type { Quiz } from '../types/content';
 import './PracticeCard.css';
@@ -11,11 +11,16 @@ interface PracticeCardProps {
 export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
   const { language } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const cardRef = useRef<HTMLElement>(null);
 
   const handleSelect = (index: number) => {
     if (selectedIndex !== null) return;
     setSelectedIndex(index);
     onAnswer(index === quiz.correctIndex);
+    // Keep the card in view after the explanation expands
+    requestAnimationFrame(() => {
+      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   };
 
   const getOptionClass = (index: number) => {
@@ -31,7 +36,7 @@ export function PracticeCard({ quiz, onAnswer }: PracticeCardProps) {
   };
 
   return (
-    <article className="practice-card">
+    <article className="practice-card" ref={cardRef}>
       <span className="practice-card__topic">{quiz.topic}</span>
       <h3 className="practice-card__question">{quiz.question}</h3>
 
