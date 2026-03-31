@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../lib/i18n';
 import { getPracticeQuestions, getAvailableTopics } from '../lib/getPracticeQuestions';
 import { PracticeCard } from '../components/PracticeCard';
+import { BackToHome } from '../components/BackToHome';
 
 export default function PracticePage() {
   const { language } = useLanguage();
@@ -42,6 +43,7 @@ export default function PracticePage() {
   return (
     <main className="page">
       <div className="container" style={{ maxWidth: '800px', padding: '2rem 1.5rem' }}>
+        <BackToHome />
         <h1>{language === 'es' ? '🎯 Practicar' : '🎯 Practice'}</h1>
         <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>
           {language === 'es'

@@ -3,6 +3,7 @@ import { useLanguage } from '../lib/i18n';
 import { explainQuestion, getAllTopics } from '../lib/explainQuestion';
 import { QuestionForm } from '../components/QuestionForm';
 import { ResponsePanel } from '../components/ResponsePanel';
+import { BackToHome } from '../components/BackToHome';
 import type { TopicResponse } from '../types/content';
 
 export default function AskPage() {
@@ -33,6 +34,7 @@ export default function AskPage() {
   return (
     <main className="page">
       <div className="container" style={{ maxWidth: '800px', padding: '2rem 1.5rem' }}>
+        <BackToHome />
         <h1>{language === 'es' ? '❓ Hacer una Pregunta' : '❓ Ask a Question'}</h1>
         <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>
           {language === 'es'
@@ -46,25 +48,23 @@ export default function AskPage() {
           buttonText={language === 'es' ? 'Preguntar' : 'Ask'}
         />
 
-        {!searched && (
-          <div style={{ marginBottom: '1.5rem' }}>
-            <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', marginBottom: '0.75rem' }}>
-              {language === 'es' ? 'O elige un tema:' : 'Or pick a topic:'}
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {allTopics.map((t) => (
-                <button
-                  key={t.id}
-                  className="btn btn--outline"
-                  style={{ fontSize: '0.875rem', padding: '0.4rem 0.85rem' }}
-                  onClick={() => handleTopicClick(t.topic)}
-                >
-                  {t.topic}
-                </button>
-              ))}
-            </div>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <p style={{ fontSize: '0.9rem', color: 'var(--color-text-light)', marginBottom: '0.75rem' }}>
+            {language === 'es' ? 'Elige un tema:' : 'Pick a topic:'}
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            {allTopics.map((t) => (
+              <button
+                key={t.id}
+                className={`btn ${result?.id === t.id ? 'btn--primary' : 'btn--outline'}`}
+                style={{ fontSize: '0.875rem', padding: '0.4rem 0.85rem' }}
+                onClick={() => handleTopicClick(t.topic)}
+              >
+                {t.topic}
+              </button>
+            ))}
           </div>
-        )}
+        </div>
 
         {result && <ResponsePanel sections={buildSections(result)} />}
 

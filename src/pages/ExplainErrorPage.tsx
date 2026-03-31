@@ -1,5 +1,6 @@
 import { useLanguage } from '../lib/i18n';
 import { ErrorExplainer } from '../components/ErrorExplainer';
+import { BackToHome } from '../components/BackToHome';
 
 export default function ExplainErrorPage() {
   const { language } = useLanguage();
@@ -7,6 +8,7 @@ export default function ExplainErrorPage() {
   return (
     <main className="page">
       <div className="container" style={{ maxWidth: '800px', padding: '2rem 1.5rem' }}>
+        <BackToHome />
         <h1>{language === 'es' ? '🐛 Explicar Error' : '🐛 Explain Error'}</h1>
         <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem' }}>
           {language === 'es'
