@@ -38,6 +38,8 @@ export default function PracticePage() {
     conditionals: { en: 'Conditionals', es: 'Condicionales' },
     functions: { en: 'Functions', es: 'Funciones' },
     arrays: { en: 'Arrays', es: 'Arreglos' },
+    objects: { en: 'Objects', es: 'Objetos' },
+    debugging: { en: 'Debugging', es: 'Depuración' },
   };
 
   return (
